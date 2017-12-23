@@ -4,6 +4,7 @@ class Tests
     main() == (
       IO`println("Running tests");
       new TestPilot().testAll();
+      new TestTeam().testAll();
       IO`println("Tests finished");
     );
 end Tests

@@ -1,0 +1,17 @@
+class Team
+instance variables
+	public name: seq of char;
+	public pilot: Pilot;
+	public coPilot: Pilot;
+	-- TODO Add Sponsor
+	-- TODO Add Car
+
+operations
+	public Team(n: seq of char, p: Pilot, cp:Pilot) res: Team == (
+		name := n;
+		pilot := p;
+		coPilot:= cp;
+	)
+	pre p.type = <Pilot> and cp.type = <CoPilot>
+	post res.name = n and res.pilot = p and res.coPilot = cp;
+end Team
