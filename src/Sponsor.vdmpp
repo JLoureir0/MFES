@@ -1,0 +1,10 @@
+class Sponsor
+instance variables
+	public name: seq of char;
+
+operations
+	public Sponsor(n: seq of char) res: Sponsor == (
+		name := n
+	)
+	post res.name = n;
+end Sponsor
