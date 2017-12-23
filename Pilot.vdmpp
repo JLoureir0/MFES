@@ -1,0 +1,19 @@
+class Pilot
+instance variables
+	public firstName: seq of char;
+	public lastName: seq of char;
+	public age: int;
+	public gender: Type`Gender;
+	public type: Type`PilotType
+
+operations
+	public Pilot(fName: seq of char, lName: seq of char, a:int, g:Type`Gender, t:Type`PilotType) res: Pilot == (
+		firstName := fName;
+		lastName := lName;
+		age:= a;
+		gender:=g;
+		type:=t;
+	)
+	pre a >= 30 and a <= 60
+	post res.firstName = fName and res.lastName = lName and res.age = a and res.gender = g and res.type = t;
+end Pilot

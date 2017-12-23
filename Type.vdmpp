@@ -1,0 +1,5 @@
+class Type
+types
+	public Gender = <Male> | <Female>;
+	public PilotType = <Pilot> | <CoPilot>
+end Type
