@@ -2,7 +2,8 @@ class TestTeam is subclass of TestSuite
 instance variables
 p: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
 cp: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
-t: Team := new Team("M-Sport World Rally Team", p, cp);
+c: Car := new Car("Ford", 1271.71, 2.5, 275.5);
+t: Team := new Team("M-Sport World Rally Team", p, cp, c);
 
 operations
   public testConstructor: () ==> ()
@@ -11,17 +12,23 @@ operations
     
     assertEqual("M-Sport World Rally Team", t.name);
     
-    assertEqual(t.pilot.firstName, p.firstName);
-    assertEqual(t.pilot.lastName, p.lastName);
-    assertEqual(t.pilot.age, p.age);
-    assertEqual(t.pilot.gender, p.gender);
-    assertEqual(t.pilot.type, p.type);
+    assertEqual(p.firstName, t.pilot.firstName);
+    assertEqual(p.lastName, t.pilot.lastName);
+    assertEqual(p.age, t.pilot.age);
+    assertEqual(p.gender, t.pilot.gender);
+    assertEqual(p.type, t.pilot.type);
     
-    assertEqual(t.coPilot.firstName, cp.firstName);
-    assertEqual(t.coPilot.lastName, cp.lastName);
-    assertEqual(t.coPilot.age, cp.age);
-    assertEqual(t.coPilot.gender, cp.gender);
-    assertEqual(t.coPilot.type, cp.type);
+    assertEqual(cp.firstName, t.coPilot.firstName);
+    assertEqual(cp.lastName, t.coPilot.lastName);
+    assertEqual(cp.age, t.coPilot.age);
+    assertEqual(cp.gender, t.coPilot.gender);
+    assertEqual(cp.type, t.coPilot.type);
+    
+    assertEqual(c.manufacture, t.car.manufacture);
+    assertEqual(c.weight, t.car.weight);
+    assertEqual(c.zeroToOneHundred, t.car.zeroToOneHundred);
+    assertEqual(c.topSpeed, t.car.topSpeed);
+    assertEqual(c.horsePower, t.car.horsePower);
   );
 
   public testAll: () ==> ()

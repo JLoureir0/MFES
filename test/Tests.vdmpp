@@ -5,6 +5,7 @@ class Tests
       IO`println("Running tests");
       new TestPilot().testAll();
       new TestTeam().testAll();
+      new TestCar().testAll();
       IO`println("Tests finished");
     );
 end Tests
