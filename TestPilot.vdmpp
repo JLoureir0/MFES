@@ -1,6 +1,7 @@
 class TestPilot is subclass of TestSuite
 instance variables
 p: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
+cp: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
 
 operations
   public testConstructor: () ==> ()
@@ -11,6 +12,12 @@ operations
     assertEqual(43,p.age);
     assertEqual(<Male>,p.gender);
     assertEqual(<Pilot>,p.type);
+    
+    assertEqual("Daniel",cp.firstName);
+    assertEqual("Elena",cp.lastName);
+    assertEqual(45,cp.age);
+    assertEqual(<Male>,cp.gender);
+    assertEqual(<CoPilot>,cp.type);
   );
 
   public testAll: () ==> ()
