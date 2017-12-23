@@ -1,0 +1,18 @@
+class Car
+instance variables
+	public manufacture: seq of char;
+	public weight: real;
+	public zeroToOneHundred: real;
+	public topSpeed: real;
+	public horsePower: real := 380;
+
+operations
+	public Car(m: seq of char, w: real, ztoh: real, ts: real) res: Car == (
+		manufacture := m;
+		weight := w;
+		zeroToOneHundred := ztoh;
+		topSpeed := ts;
+	)
+	pre w > 1190 and ztoh <= 4 and ts > 200
+	post res.manufacture = m and res.weight = w and res.zeroToOneHundred = ztoh and res.topSpeed = ts;
+end Car
