@@ -1,0 +1,9 @@
+class Tests
+  operations
+    public static main: () ==> ()
+    main() == (
+      IO`println("Running tests");
+      new TestPilot().testAll();
+      IO`println("Tests finished");
+    );
+end Tests

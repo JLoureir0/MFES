@@ -1,0 +1,21 @@
+class TestPilot is subclass of TestSuite
+instance variables
+p: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
+
+operations
+  public testConstructor: () ==> ()
+  testConstructor() == (
+    IO`println("\t\t test constructor");   
+    assertEqual("Sébastien",p.firstName);
+    assertEqual("Loeb",p.lastName);
+    assertEqual(43,p.age);
+    assertEqual(<Male>,p.gender);
+    assertEqual(<Pilot>,p.type);
+  );
+
+  public testAll: () ==> ()
+  testAll() == (
+    IO`println("\t pilot tests");
+    testConstructor();
+  );
+end TestPilot
