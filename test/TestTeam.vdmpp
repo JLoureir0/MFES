@@ -4,6 +4,7 @@ p: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
 cp: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
 c: Car := new Car("Ford", 1271.71, 2.5, 275.5);
 t: Team := new Team("M-Sport World Rally Team", p, cp, c);
+s: Sponsor := new Sponsor("Red Bull");
 
 operations
   public testConstructor: () ==> ()
@@ -29,6 +30,10 @@ operations
     assertEqual(c.zeroToOneHundred, t.car.zeroToOneHundred);
     assertEqual(c.topSpeed, t.car.topSpeed);
     assertEqual(c.horsePower, t.car.horsePower);
+    
+    t.addSponsor(s);
+    assertEqual(t.sponsors(1).name, s.name);
+    
   );
 
   public testAll: () ==> ()
