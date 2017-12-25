@@ -21,5 +21,6 @@ operations
   public testAll() == (
     IO`println("\t sector tests");
     testConstructor();
+    testSetTime();
   );
 end TestSector
