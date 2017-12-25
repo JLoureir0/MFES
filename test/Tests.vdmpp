@@ -1,7 +1,6 @@
 class Tests
   operations
-    public static main: () ==> ()
-    main() == (
+    public static main() == (
       IO`println("Running tests");
       new TestPilot().testAll();
       new TestTeam().testAll();

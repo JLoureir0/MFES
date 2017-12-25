@@ -3,14 +3,12 @@ instance variables
 s: Sponsor := new Sponsor("Michelin");
 
 operations
-  public testConstructor: () ==> ()
-  testConstructor() == (
+  public testConstructor() == (
     IO`println("\t\t test constructor");
     assertEqual("Michelin", s.name);
   );
 
-  public testAll: () ==> ()
-  testAll() == (
+  public testAll() == (
     IO`println("\t sponsor tests");
     testConstructor();
   );

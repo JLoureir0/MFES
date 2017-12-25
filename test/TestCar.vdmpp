@@ -3,8 +3,7 @@ instance variables
 c: Car := new Car("Ford", 1271.71, 2.5, 275.5);
 
 operations
-  public testConstructor: () ==> ()
-  testConstructor() == (
+  public testConstructor() == (
     IO`println("\t\t test constructor");
     assertEqual("Ford", c.manufacture);
     assertEqual(1271.71, c.weight);
@@ -13,8 +12,7 @@ operations
     assertEqual(380, c.horsePower);
   );
 
-  public testAll: () ==> ()
-  testAll() == (
+  public testAll() == (
     IO`println("\t car tests");
     testConstructor();
   );

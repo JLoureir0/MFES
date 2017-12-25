@@ -7,8 +7,7 @@ t: Team := new Team("M-Sport World Rally Team", p, cp, c);
 s: Sponsor := new Sponsor("Red Bull");
 
 operations
-  public testConstructor: () ==> ()
-  testConstructor() == (
+  public testConstructor() == (
     IO`println("\t\t test constructor");
     
     assertEqual("M-Sport World Rally Team", t.name);
@@ -32,16 +31,14 @@ operations
     assertEqual(c.horsePower, t.car.horsePower);    
   );
   
-  public testAddSponsor: () ==> ()
-  testAddSponsor() == (
+  public testAddSponsor() == (
   	IO`println("\t\t test add sponsor");
   	
   	t.addSponsor(s);
     assertTrue(s in set t.sponsors);
   );
 
-  public testAll: () ==> ()
-  testAll() == (
+  public testAll() == (
     IO`println("\t team tests");
     testConstructor();
     testAddSponsor();

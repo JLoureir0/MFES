@@ -4,8 +4,7 @@ p: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
 cp: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
 
 operations
-  public testConstructor: () ==> ()
-  testConstructor() == (
+  public testConstructor() == (
     IO`println("\t\t test constructor");   
     assertEqual("Sébastien",p.firstName);
     assertEqual("Loeb",p.lastName);
@@ -20,8 +19,7 @@ operations
     assertEqual(<CoPilot>,cp.type);
   );
 
-  public testAll: () ==> ()
-  testAll() == (
+  public testAll() == (
     IO`println("\t pilot tests");
     testConstructor();
   );
