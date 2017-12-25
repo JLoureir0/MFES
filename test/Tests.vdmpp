@@ -8,6 +8,7 @@ class Tests
       new TestSponsor().testAll();
       new TestSector().testAll();
       new TestPointOfInterest().testAll();
+      new TestSection().testAll();
       IO`println("Tests finished");
     );
 end Tests

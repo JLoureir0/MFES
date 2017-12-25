@@ -3,7 +3,7 @@ instance variables
 	public name: seq of char;
 	public distance: real;
 	public time: real := -1;
-	public averageSpeed: real := -1;  
+	public averageSpeed: real := -1;
 operations
 	public Sector(n: seq of char, d: real) res: Sector == (
 		name := n;
