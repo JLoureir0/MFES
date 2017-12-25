@@ -29,16 +29,21 @@ operations
     assertEqual(c.weight, t.car.weight);
     assertEqual(c.zeroToOneHundred, t.car.zeroToOneHundred);
     assertEqual(c.topSpeed, t.car.topSpeed);
-    assertEqual(c.horsePower, t.car.horsePower);
-    
-    t.addSponsor(s);
+    assertEqual(c.horsePower, t.car.horsePower);    
+  );
+  
+  public testAddSponsor: () ==> ()
+  testAddSponsor() == (
+  	IO`println("\t\t test add sponsor");
+  	
+  	t.addSponsor(s);
     assertEqual(t.sponsors(1).name, s.name);
-    
   );
 
   public testAll: () ==> ()
   testAll() == (
     IO`println("\t team tests");
     testConstructor();
+    testAddSponsor();
   );
 end TestTeam
