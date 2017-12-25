@@ -37,7 +37,7 @@ operations
   	IO`println("\t\t test add sponsor");
   	
   	t.addSponsor(s);
-    assertEqual(t.sponsors(1).name, s.name);
+    assertTrue(s in set t.sponsors);
   );
 
   public testAll: () ==> ()

@@ -4,7 +4,7 @@ instance variables
 	public pilot: Pilot;
 	public coPilot: Pilot;
 	public car: Car;
-	public sponsors: seq of Sponsor := [];
+	public sponsors: set of Sponsor := {};
 
 operations
 	public Team(n: seq of char, p: Pilot, cp: Pilot, c: Car) res: Team == (
@@ -16,9 +16,10 @@ operations
 	pre p.type = <Pilot> and cp.type = <CoPilot>
 	post res.name = n and res.pilot = p and res.coPilot = cp and res.car = c;
 	
-	public addSponsor: Sponsor ==> ()
- 		addSponsor(x) == sponsors := [x] ^ sponsors
- 	post sponsors = [x] ^ sponsors~;
+	public addSponsor(sponsor: Sponsor) == (
+ 			sponsors := sponsors union {sponsor}
+ 	)
+ 	post sponsor in set sponsors;
  	/* TODO remove sponsor */
 	
 end Team
