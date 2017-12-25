@@ -17,9 +17,13 @@ operations
 	post res.name = n and res.pilot = p and res.coPilot = cp and res.car = c;
 	
 	public addSponsor(sponsor: Sponsor) == (
- 			sponsors := sponsors union {sponsor}
+ 		sponsors := sponsors union {sponsor};
  	)
  	post sponsor in set sponsors;
- 	/* TODO remove sponsor */
+ 	
+ 	public removeSponsor(sponsor: Sponsor) == (
+ 		sponsors := sponsors \ {sponsor};
+ 	)
+ 	post sponsor not in set sponsors;
 	
 end Team

@@ -37,10 +37,18 @@ operations
   	t.addSponsor(s);
     assertTrue(s in set t.sponsors);
   );
+  
+  public testRemoveSponsor() == (
+  	IO`println("\t\t test remove sponsor");
+  	
+  	t.removeSponsor(s);
+    assertTrue(s not in set t.sponsors);
+  );
 
   public testAll() == (
     IO`println("\t team tests");
     testConstructor();
     testAddSponsor();
+    testRemoveSponsor();
   );
 end TestTeam
