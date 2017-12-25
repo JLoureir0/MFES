@@ -1,0 +1,21 @@
+class Sector
+instance variables
+	public name: seq of char;
+	public distance: real;
+	public time: real := -1;
+	public averageSpeed: real := -1;  
+operations
+	public Sector(n: seq of char, d: real) res: Sector == (
+		name := n;
+		distance := d;
+	)
+	pre d > 0
+	post res.name = n and res.distance = d;
+	
+	public setTime(t: real) ==  (
+		time := t;
+		averageSpeed := distance/t;
+	)
+	pre t > 0
+	post time = t and averageSpeed = distance/time;
+end Sector
