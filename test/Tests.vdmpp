@@ -7,6 +7,7 @@ class Tests
       new TestCar().testAll();
       new TestSponsor().testAll();
       new TestSector().testAll();
+      new TestPointOfInterest().testAll();
       IO`println("Tests finished");
     );
 end Tests

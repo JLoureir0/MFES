@@ -1,0 +1,17 @@
+class PointOfInterest
+
+instance variables
+	public name: seq of char;
+	public kilometre: real;
+	public type: Type`PointOfInterestType;  
+
+operations
+	public PointOfInterest(n: seq of char, k: real, t: Type`PointOfInterestType) res: PointOfInterest == (
+		name := n;
+		kilometre := k;
+		type := t;
+	)
+	pre k > 0
+	post res.name = n and res.kilometre = k and res.type = t;
+
+end PointOfInterest
