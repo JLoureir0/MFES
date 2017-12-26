@@ -19,11 +19,13 @@ operations
 	public addSponsor(sponsor: Sponsor) == (
  		sponsors := sponsors union {sponsor};
  	)
+ 	pre sponsor not in set sponsors
  	post sponsor in set sponsors;
  	
  	public removeSponsor(sponsor: Sponsor) == (
  		sponsors := sponsors \ {sponsor};
  	)
+ 	pre sponsor in set sponsors
  	post sponsor not in set sponsors;
 	
 end Team
