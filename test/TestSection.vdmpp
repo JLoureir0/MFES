@@ -3,6 +3,7 @@ class TestSection is subclass of TestSuite
 instance variables
 s: Section := new Section("Venezia", "Bologna", 248.41);
 p: PointOfInterest := new PointOfInterest("Colosseo", 20, <Locality>);
+sc: Sector := new Sector("Piazza D'el Mar", 20);
 
 operations
   public testConstructor() == (
@@ -25,12 +26,26 @@ operations
   	s.removePointOfInterest(p);
     assertTrue(p not in set s.pointsOfInterest);
   );
+  
+	public testAddSector() == (
+    IO`println("\t\t test add sector");
+    s.addSector(sc);
+    assertTrue(sc in set s.sectors);
+   );
+   
+	public testRemoveSector() == (
+  	IO`println("\t\t test remove sector");
+  	s.removeSector(sc);
+    assertTrue(sc not in set s.sectors);
+  );
 
   public testAll() == (
     IO`println("\t section tests");
     testConstructor();
     testAddPointOfInterest();
     testRemovePointOfInterest();
+    testAddSector();
+    testRemoveSector()
   );
 operations
 
