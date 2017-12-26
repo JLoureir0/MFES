@@ -7,7 +7,7 @@ instance variables
 	public time: real := -1;
 	public averageSpeed: real := -1;
 	public sectors: seq of Sector := [];
-	public pointsOfInterest: seq of PointOfInterest := [];
+	public pointsOfInterest: set of PointOfInterest := {};
 operations
 	public Section(sL: seq of char, eL: seq of char, d: real) res: Section == (
 		startLocation := sL;
@@ -17,5 +17,15 @@ operations
 	pre d > 0
 	post res.startLocation = sL and res.endLocation = eL and res.distance = d;
 	
-	-- TODO: Add sectors and points of interests (with new!!)
+	public addPointOfInterest(p: PointOfInterest) == (
+		pointsOfInterest := pointsOfInterest union {p};
+	)
+	pre p.kilometre >= 0 and p.kilometre < distance and p not in set pointsOfInterest 
+	post p in set pointsOfInterest;
+	
+	public removePointOfInterest(p: PointOfInterest) == (
+ 		pointsOfInterest := pointsOfInterest \ {p};
+ 	)
+ 	pre p in set pointsOfInterest
+ 	post p not in set pointsOfInterest;
 end Section
