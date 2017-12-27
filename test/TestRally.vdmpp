@@ -22,7 +22,7 @@ class TestRally is subclass of TestSuite
 		
 		days: seq of Day := [d];
 		
-		r: Rally := new Rally(<WRC>, days, participants);
+		r: Rally := new Rally(<TimeTrial>, "Italy", days, participants);
 
 
 	operations
@@ -31,7 +31,8 @@ class TestRally is subclass of TestSuite
   	
   		IO`println("\t\t test constructor");
   		
-  		assertEqual(<WRC>, r.category);
+  		assertEqual(<TimeTrial>, r.category);
+  		assertEqual("Italy", r.local);
   		assertEqual("Venezia", r.days(1).sections(1).startLocation);
     	assertTrue(t1 in set r.participants);
     	assertTrue(t2 in set r.participants);

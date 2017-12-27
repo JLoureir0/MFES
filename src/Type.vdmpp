@@ -3,5 +3,5 @@ types
 	public Gender = <Male> | <Female>;
 	public PilotType = <Pilot> | <CoPilot>;
 	public PointOfInterestType = <TimeControl> | <PassageControl> | <Grouping> | <Service> | <Refuel> | <Holding> | <Locality> | <Special> | <TimeTrial>;
-	public RallyType = <WRC> | <WRC2> | <WRC3> | <JWRC>;
+	public RallyType = <TimeTrial> | <SpecialStage> | <Regulatory> | <TSD> | <Historic> | <Vintage>;
 end Type
