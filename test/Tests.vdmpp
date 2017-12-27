@@ -10,6 +10,7 @@ class Tests
       new TestPointOfInterest().testAll();
       new TestSection().testAll();
       new TestDay().testAll();
+      new TestRally().testAll();
       IO`println("Tests finished");
     );
 end Tests

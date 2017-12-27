@@ -1,0 +1,27 @@
+class Rally
+
+	instance variables
+	
+		public category: Type`RallyType;
+		public days: seq of Day;
+		public participants: set of Team := {};
+		public winner: Team;
+
+
+	operations
+
+		public Rally(c: Type`RallyType, d: seq of Day, p: set of Team) res: Rally == (
+			category := c;
+			days := d;
+			participants := p;
+		)
+		pre len d > 0 and card p > 1
+		post len res.days > 0 and card participants > 1;
+		
+		public assignWinner(w: Team) == (
+			winner := w;
+		)
+		pre len w.name > 0  
+		post winner in set participants;
+	
+end Rally
