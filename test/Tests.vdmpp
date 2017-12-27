@@ -9,6 +9,7 @@ class Tests
       new TestSector().testAll();
       new TestPointOfInterest().testAll();
       new TestSection().testAll();
+      new TestDay().testAll();
       IO`println("Tests finished");
     );
 end Tests

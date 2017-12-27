@@ -1,0 +1,42 @@
+class TestDay is subclass of TestSuite
+	
+	instance variables
+	
+		s: Section := new Section("Venezia", "Bologna", 248.41);
+		
+		sections: seq of Section := [s];
+		
+		p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
+		cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
+		c1: Car := new Car("Ford", 1271.71, 2.5, 275.5);
+		t1: Team := new Team("M-Sport World Rally Team", p1, cp1, c1);
+		
+		p2: Pilot := new Pilot("Sébastien", "Ogier", 34, <Male>, <Pilot>);
+		cp2: Pilot := new Pilot("Julien", "Ingrassia", 38, <Male>, <CoPilot>);
+		c2: Car := new Car("Volkswagen", 1200, 3.5, 250);
+		t2: Team := new Team("M-Sport World Rally Team", p2, cp2, c2);
+		
+		teams: set of Team := {t1, t2};
+		
+		d: Day := new Day(sections, teams);
+
+
+	operations
+	
+  	public testConstructor() == (
+  	
+  		IO`println("\t\t test constructor");
+  		
+  		assertEqual("Venezia", d.sections(1).startLocation);
+  		assertEqual("Bologna", d.sections(1).endLocation);
+    	assertTrue(t1 in set d.teams);
+    	assertTrue(t2 in set d.teams);
+    	
+  	);
+
+  	public testAll() == (
+    	IO`println("\t day tests");
+    	testConstructor();
+  	);
+
+end TestDay

@@ -1,0 +1,18 @@
+class Day
+
+	instance variables
+	
+		public sections: seq of Section := [];
+		public teams: set of Team := {};
+
+
+	operations
+
+		public Day(s: seq of Section, t: set of Team) res: Day == (
+			sections := s;
+			teams := t;
+		)
+		pre len s > 0 and card t > 1
+		post len res.sections > 0 and card teams > 1;
+	
+end Day
