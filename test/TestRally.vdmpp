@@ -5,7 +5,12 @@ class TestRally is subclass of TestSuite
 		s1: Section := new Section("Venezia", "Bologna", 248.41);
 		s2: Section := new Section("Milano", "Verona", 175.32);
 		
-		sections: seq of Section := [s1, s2];
+		s3: Section := new Section("Lisboa", "Porto", 248.41);
+		s4: Section := new Section("Viseu", "Porto", 175.32);
+		
+		sections1: seq of Section := [s1, s2];
+		sections2: seq of Section := [s3, s4];
+		allSections: seq of Section := sections1 ^ sections2;
 		
 		p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
 		cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
@@ -19,9 +24,10 @@ class TestRally is subclass of TestSuite
 		
 		participants: set of Team := {t1, t2};
 		
-		d: Day := new Day(sections, participants);
+		d1: Day := new Day(sections1, participants);
+		d2: Day := new Day(sections2, participants);
 		
-		days: seq of Day := [d];
+		days: seq of Day := [d1, d2];
 		
 		r: Rally := new Rally(<TimeTrial>, "Italy", days, participants);
 
@@ -42,9 +48,10 @@ class TestRally is subclass of TestSuite
   	
   	public testMapTeamSections() == (
   		r.mapTeamSections();
-  		--IO`printf("\t\t Test teamSections: %s\n", [r.teamSections(t1)]);
-  		assertEqual(sections, r.teamSections(t1));
-  		assertEqual(sections, r.teamSections(t2));
+  		--IO`printf("\t\t Team1 sections: %s\n", [r.teamSections(t1)]);
+  		--IO`printf("\t\t Team2 sections: %s\n", [r.teamSections(t2)]);
+  		assertEqual(allSections, r.teamSections(t1));
+  		assertEqual(allSections, r.teamSections(t2));
   	);
 
   	public testAll() == (
