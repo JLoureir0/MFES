@@ -7,6 +7,7 @@ class Rally
 		public days: seq of Day;
 		public participants: set of Team;
 		public winner: Team;
+		public teamSections: map Team to seq of Section := {|->};
 
 
 	operations
@@ -25,5 +26,11 @@ class Rally
 		)
 		pre w in set participants  
 		post winner = w;
+		
+		public mapTeamSections() == (
+			for d in days do
+				for all t in set d.teams do
+						teamSections := teamSections munion {t |-> d.sections};
+		)
 	
 end Rally

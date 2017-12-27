@@ -2,9 +2,10 @@ class TestRally is subclass of TestSuite
 	
 	instance variables
 	
-		s: Section := new Section("Venezia", "Bologna", 248.41);
+		s1: Section := new Section("Venezia", "Bologna", 248.41);
+		s2: Section := new Section("Milano", "Verona", 175.32);
 		
-		sections: seq of Section := [s];
+		sections: seq of Section := [s1, s2];
 		
 		p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
 		cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
@@ -38,10 +39,18 @@ class TestRally is subclass of TestSuite
     	assertTrue(t2 in set r.participants);
     	
   	);
+  	
+  	public testMapTeamSections() == (
+  		r.mapTeamSections();
+  		--IO`printf("\t\t Test teamSections: %s\n", [r.teamSections(t1)]);
+  		assertEqual(sections, r.teamSections(t1));
+  		assertEqual(sections, r.teamSections(t2));
+  	);
 
   	public testAll() == (
-    	IO`println("\t day tests");
+    	IO`println("\t rally tests");
     	testConstructor();
+    	testMapTeamSections();
   	);
 
 end TestRally
