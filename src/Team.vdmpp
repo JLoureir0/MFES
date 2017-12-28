@@ -5,6 +5,7 @@ instance variables
 	public coPilot: Pilot;
 	public car: Car;
 	public sponsors: set of Sponsor := {};
+	public totalTime: real := 0;
 
 operations
 	public Team(n: seq of char, p: Pilot, cp: Pilot, c: Car) res: Team == (
@@ -27,5 +28,18 @@ operations
  	)
  	pre sponsor in set sponsors
  	post sponsor not in set sponsors;
+ 	
+ 	public addTime(t: real) == (
+ 		totalTime := totalTime + t;
+ 	)
+ 	pre totalTime >= 0 and t > 0
+ 	post totalTime = totalTime + t;
+ 	
+ 	--in case a team misses a day of competition
+ 	public penalty() == (
+ 		totalTime := totalTime + 50;
+ 	)
+ 	pre totalTime >= 0
+ 	post totalTime = totalTime + 50;
 	
 end Team
