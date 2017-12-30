@@ -1,7 +1,6 @@
 class TestDay is subclass of TestSuite
 	
 	instance variables
-	
 		s: Section := new Section("Venezia", "Bologna", 248.41);
 		
 		sections: seq of Section := [s];
@@ -20,9 +19,7 @@ class TestDay is subclass of TestSuite
 		
 		d: Day := new Day(sections, teams);
 
-
 	operations
-	
   	public testConstructor() == (
   	
   		IO`println("\t\t test constructor");

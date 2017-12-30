@@ -1,7 +1,9 @@
 class Type
-types
-	public Gender = <Male> | <Female>;
-	public PilotType = <Pilot> | <CoPilot>;
-	public PointOfInterestType = <TimeControl> | <PassageControl> | <Grouping> | <Service> | <Refuel> | <Holding> | <Locality> | <Special> | <TimeTrial>;
-	public RallyType = <TimeTrial> | <SpecialStage> | <Regulatory> | <TSD> | <Historic> | <Vintage>;
+
+	types
+		public Gender = <Male> | <Female>;
+		public PilotType = <Pilot> | <CoPilot>;
+		public PointOfInterestType = <TimeControl> | <PassageControl> | <Grouping> | <Service> | <Refuel> | <Holding> | <Locality> | <Special> | <TimeTrial>;
+		public RallyType = <TimeTrial> | <SpecialStage> | <Regulatory> | <TSD> | <Historic> | <Vintage>;
+
 end Type

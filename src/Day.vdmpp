@@ -1,13 +1,14 @@
 class Day
 
-	instance variables
-	
-		public sections: seq of Section;
-		public teams: set of Team;
+	types
+		public DaySections = seq of Section;
+		public DayParticipants = set of Team;
 
+	instance variables
+		public sections: DaySections;
+		public teams: DayParticipants;
 
 	operations
-
 		public Day(s: seq of Section, t: set of Team) res: Day == (
 			sections := s;
 			teams := t;

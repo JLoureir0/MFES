@@ -1,15 +1,25 @@
 class Rally
 
+	values
+		public TIME_PENALTY = 50;
+
+	types
+		public RallyCategory = Type`RallyType;
+		public RallyLocal = seq of char;
+		public RallyDays = seq of Day;
+		public RallyParticipants = set of Team;
+		public RallyWinner = Team;
+		public RallyTeamSections = map Team to seq of Section;
+
 	instance variables
 	
-		public category: Type`RallyType;
-		public local: seq of char;
-		public days: seq of Day;
-		public participants: set of Team;
-		public winner: Team;
-		public teamSections: map Team to seq of Section := {|->};
+		public category: RallyCategory;
+		public local: RallyLocal;
+		public days: RallyDays;
+		public participants: RallyParticipants;
+		public winner: RallyWinner;
+		public teamSections: RallyTeamSections := {|->};
 		
-
 	operations
 
 		public Rally(c: Type`RallyType, l: seq of char, d: seq of Day, p: set of Team) res: Rally == (

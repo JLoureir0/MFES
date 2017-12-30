@@ -1,19 +1,28 @@
 class Pilot
-instance variables
-	public firstName: seq of char;
-	public lastName: seq of char;
-	public age: int;
-	public gender: Type`Gender;
-	public type: Type`PilotType
 
-operations
-	public Pilot(fName: seq of char, lName: seq of char, a:int, g:Type`Gender, t:Type`PilotType) res: Pilot == (
-		firstName := fName;
-		lastName := lName;
-		age:= a;
-		gender:=g;
-		type:=t;
-	)
-	pre a >= 30 and a <= 60
-	post res.firstName = fName and res.lastName = lName and res.age = a and res.gender = g and res.type = t;
+	types
+		public PilotFirstName = seq of char;
+		public PilotLastName = seq of char;
+		public PilotAge = nat1;
+		public PilotGender = Type`Gender;
+		public PilotType = Type`PilotType;
+
+	instance variables
+		public firstName: PilotFirstName;
+		public lastName: PilotLastName;
+		public age: PilotAge;
+		public gender: PilotGender;
+		public type: PilotType;
+	
+	operations
+		public Pilot(fName: seq of char, lName: seq of char, a:nat1, g:Type`Gender, t:Type`PilotType) res: Pilot == (
+			firstName := fName;
+			lastName := lName;
+			age:= a;
+			gender:=g;
+			type:=t;
+		)
+		pre a >= 30 and a <= 60
+		post res.firstName = fName and res.lastName = lName and res.age = a and res.gender = g and res.type = t;
+	
 end Pilot

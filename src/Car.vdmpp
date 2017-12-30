@@ -1,18 +1,30 @@
 class Car
-instance variables
-	public manufacture: seq of char;
-	public weight: real;
-	public zeroToOneHundred: real;
-	public topSpeed: real;
-	public horsePower: real := 380;
 
-operations
-	public Car(m: seq of char, w: real, ztoh: real, ts: real) res: Car == (
-		manufacture := m;
-		weight := w;
-		zeroToOneHundred := ztoh;
-		topSpeed := ts;
-	)
-	pre w > 1190 and ztoh <= 4 and ts > 200
-	post res.manufacture = m and res.weight = w and res.zeroToOneHundred = ztoh and res.topSpeed = ts;
+	values
+		public HORSEPOWER = 380;
+
+	types
+		public CarManufacturer = seq of char;
+		public CarWeight = real;
+		public CarZeroToOneHundred = real;
+		public CarTopSpeed = real;
+		public CarHorsePower = real;
+
+	instance variables
+		public manufacturer: CarManufacturer;
+		public weight: CarWeight;
+		public zeroToOneHundred: CarZeroToOneHundred;
+		public topSpeed: CarTopSpeed;
+		public horsePower: CarHorsePower := HORSEPOWER;
+	
+	operations
+		public Car(m: seq of char, w: real, ztoh: real, ts: real) res: Car == (
+			manufacturer := m;
+			weight := w;
+			zeroToOneHundred := ztoh;
+			topSpeed := ts;
+		)
+		pre w > 1190 and ztoh <= 4 and ts > 200
+		post res.manufacturer = m and res.weight = w and res.zeroToOneHundred = ztoh and res.topSpeed = ts;
+		
 end Car

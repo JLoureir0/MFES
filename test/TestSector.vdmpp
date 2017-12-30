@@ -1,26 +1,28 @@
 class TestSector is subclass of TestSuite
-instance variables
-s: Sector := new Sector("Piazza D'el Mar", 20);
 
-operations
-  public testConstructor() == (
-    IO`println("\t\t test constructor");
-    assertEqual("Piazza D'el Mar", s.name);
-    assertEqual(20, s.distance);
-    assertEqual(-1, s.time);
-    assertEqual(-1, s.averageSpeed);
-   );
-   
-   public testSetTime() == (
-   	IO`println("\t\t test set time");
-   	s.setTime(2);
-   	assertEqual(2, s.time);
-   	assertEqual(10, s.averageSpeed);
-   );
-
-  public testAll() == (
-    IO`println("\t sector tests");
-    testConstructor();
-    testSetTime();
-  );
+	instance variables
+		s: Sector := new Sector("Piazza D'el Mar", 20);
+	
+	operations
+	  public testConstructor() == (
+	    IO`println("\t\t test constructor");
+	    assertEqual("Piazza D'el Mar", s.name);
+	    assertEqual(20, s.distance);
+	    assertEqual(0, s.time);
+	    assertEqual(0, s.averageSpeed);
+	   );
+	   
+	   public testSetTime() == (
+	   	IO`println("\t\t test set time");
+	   	s.setTime(2);
+	   	assertEqual(2, s.time);
+	   	assertEqual(10, s.averageSpeed);
+	   );
+	
+	  public testAll() == (
+	    IO`println("\t sector tests");
+	    testConstructor();
+	    testSetTime();
+	  );
+	  
 end TestSector

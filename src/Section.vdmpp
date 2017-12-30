@@ -1,48 +1,82 @@
 class Section
 
-instance variables
-	public startLocation: seq of char;
-	public endLocation: seq of char;
-	public distance: real;
-	public time: real := -1;
-	public averageSpeed: real := -1;
-	public sectors: set of Sector := {};
-	public pointsOfInterest: set of PointOfInterest := {};
-operations
-	public Section(sL: seq of char, eL: seq of char, d: real) res: Section == (
-		startLocation := sL;
-		endLocation := eL;
-		distance := d;
-	)
-	pre d > 0
-	post res.startLocation = sL and res.endLocation = eL and res.distance = d;
-	
-	public addPointOfInterest(p: PointOfInterest) == (
-		pointsOfInterest := pointsOfInterest union {p};
-	)
-	pre p.kilometre < distance and p not in set pointsOfInterest 
-	post p in set pointsOfInterest;
-	
-	public removePointOfInterest(p: PointOfInterest) == (
- 		pointsOfInterest := pointsOfInterest \ {p};
- 	)
- 	pre p in set pointsOfInterest
- 	post p not in set pointsOfInterest;
- 	
- 	public addSector(s: Sector) == (
-		sectors := sectors union {s};
-	)
-	pre s not in set sectors and sumSectorsDistances(sectors)+s.distance <= distance
-	post s in set sectors;
-	
-	public removeSector(s: Sector) == (
- 		sectors := sectors \ {s};
- 	)
- 	pre s in set sectors
- 	post s not in set sectors;
- 	
-functions 	
- 	private sumSectorsDistances(sectors: set of Sector) res:nat ==
- 		if sectors = {} then 0 else
- 			let s in set sectors in s.distance + sumSectorsDistances(sectors \ {s})
+	values
+		public INIT_AT_ZERO = 0;
+
+	types
+		public SectionStartLocation = seq of char;
+		public SectionEndLocation = seq of char;
+		public SectionDistance = real;
+		public SectionTime = real;
+		public SectionAverageSpeed = real;
+		public SectionSectors = set of Sector;
+		public SectionPointsOfInterest = set of PointOfInterest;
+
+	instance variables
+		public startLocation: SectionStartLocation;
+		public endLocation: SectionEndLocation;
+		public distance: SectionDistance := INIT_AT_ZERO;
+		public time: SectionTime := INIT_AT_ZERO;
+		public averageSpeed: SectionAverageSpeed := INIT_AT_ZERO;
+		public sectors: SectionSectors := {};
+		public pointsOfInterest: SectionPointsOfInterest := {};
+		
+	operations
+		public Section(sL: seq of char, eL: seq of char, d: real) res: Section == (
+			startLocation := sL;
+			endLocation := eL;
+			distance := d;
+		)
+		pre d > 0
+		post res.startLocation = sL and res.endLocation = eL and res.distance = d;
+		
+		public addPointOfInterest(p: PointOfInterest) == (
+			pointsOfInterest := pointsOfInterest union {p};
+		)
+		pre p.kilometre < distance and p not in set pointsOfInterest 
+		post p in set pointsOfInterest;
+		
+		public removePointOfInterest(p: PointOfInterest) == (
+	 		pointsOfInterest := pointsOfInterest \ {p};
+	 	)
+	 	pre p in set pointsOfInterest
+	 	post p not in set pointsOfInterest;
+	 	
+	 	public addSector(s: Sector) == (
+			sectors := sectors union {s};
+		)
+		pre s not in set sectors and sumSectorsDistances(sectors)+s.distance <= distance
+		post s in set sectors;
+		
+		public removeSector(s: Sector) == (
+	 		sectors := sectors \ {s};
+	 	)
+	 	pre s in set sectors
+	 	post s not in set sectors;
+	 	
+	 	public sumDistances() == (
+	 		for all s in set sectors do
+	 			distance := distance + s.distance;
+	 	)
+	 	pre distance = 0
+	 	post distance >= 0;
+	 	
+	 	public sumTimes() == (
+	 		for all s in set sectors do
+	 			time := time + s.time;
+	 	)
+	 	pre time = 0
+	 	post time >= 0;
+	 	
+	 	public setAvgSpeed() == (
+	 		averageSpeed := distance/time;
+	 	)
+	 	pre distance >= 0 and time >= 0
+		post averageSpeed = distance/time;
+	 	
+	functions 	
+	 	private sumSectorsDistances(sectors: set of Sector) res:real ==(
+	 		if sectors = {} then 0 else
+	 			let s in set sectors in s.distance + sumSectorsDistances(sectors \ {s}))
+	 			
 end Section

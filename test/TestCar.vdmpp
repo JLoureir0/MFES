@@ -1,19 +1,21 @@
 class TestCar is subclass of TestSuite
-instance variables
-c: Car := new Car("Ford", 1271.71, 2.5, 275.5);
 
-operations
-  public testConstructor() == (
-    IO`println("\t\t test constructor");
-    assertEqual("Ford", c.manufacture);
-    assertEqual(1271.71, c.weight);
-    assertEqual(2.5, c.zeroToOneHundred);
-    assertEqual(275.5, c.topSpeed);
-    assertEqual(380, c.horsePower);
-  );
-
-  public testAll() == (
-    IO`println("\t car tests");
-    testConstructor();
-  );
+	instance variables
+		c: Car := new Car("Ford", 1271.71, 2.5, 275.5);
+	
+	operations
+	  public testConstructor() == (
+	    IO`println("\t\t test constructor");
+	    assertEqual("Ford", c.manufacturer);
+	    assertEqual(1271.71, c.weight);
+	    assertEqual(2.5, c.zeroToOneHundred);
+	    assertEqual(275.5, c.topSpeed);
+	    assertEqual(380, c.horsePower);
+	  );
+	
+	  public testAll() == (
+	    IO`println("\t car tests");
+	    testConstructor();
+	  );
+	  
 end TestCar

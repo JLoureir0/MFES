@@ -1,54 +1,56 @@
 class TestTeam is subclass of TestSuite
-instance variables
-p: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
-cp: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
-c: Car := new Car("Ford", 1271.71, 2.5, 275.5);
-t: Team := new Team("M-Sport World Rally Team", p, cp, c);
-s: Sponsor := new Sponsor("Red Bull");
 
-operations
-  public testConstructor() == (
-    IO`println("\t\t test constructor");
-    
-    assertEqual("M-Sport World Rally Team", t.name);
-    
-    assertEqual(p.firstName, t.pilot.firstName);
-    assertEqual(p.lastName, t.pilot.lastName);
-    assertEqual(p.age, t.pilot.age);
-    assertEqual(p.gender, t.pilot.gender);
-    assertEqual(p.type, t.pilot.type);
-    
-    assertEqual(cp.firstName, t.coPilot.firstName);
-    assertEqual(cp.lastName, t.coPilot.lastName);
-    assertEqual(cp.age, t.coPilot.age);
-    assertEqual(cp.gender, t.coPilot.gender);
-    assertEqual(cp.type, t.coPilot.type);
-    
-    assertEqual(c.manufacture, t.car.manufacture);
-    assertEqual(c.weight, t.car.weight);
-    assertEqual(c.zeroToOneHundred, t.car.zeroToOneHundred);
-    assertEqual(c.topSpeed, t.car.topSpeed);
-    assertEqual(c.horsePower, t.car.horsePower);    
-  );
-  
-  public testAddSponsor() == (
-  	IO`println("\t\t test add sponsor");
-  	
-  	t.addSponsor(s);
-    assertTrue(s in set t.sponsors);
-  );
-  
-  public testRemoveSponsor() == (
-  	IO`println("\t\t test remove sponsor");
-  	
-  	t.removeSponsor(s);
-    assertTrue(s not in set t.sponsors);
-  );
-
-  public testAll() == (
-    IO`println("\t team tests");
-    testConstructor();
-    testAddSponsor();
-    testRemoveSponsor();
-  );
+	instance variables
+		p: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
+		cp: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
+		c: Car := new Car("Ford", 1271.71, 2.5, 275.5);
+		t: Team := new Team("M-Sport World Rally Team", p, cp, c);
+		s: Sponsor := new Sponsor("Red Bull");
+	
+	operations
+	  public testConstructor() == (
+	    IO`println("\t\t test constructor");
+	    
+	    assertEqual("M-Sport World Rally Team", t.name);
+	    
+	    assertEqual(p.firstName, t.pilot.firstName);
+	    assertEqual(p.lastName, t.pilot.lastName);
+	    assertEqual(p.age, t.pilot.age);
+	    assertEqual(p.gender, t.pilot.gender);
+	    assertEqual(p.type, t.pilot.type);
+	    
+	    assertEqual(cp.firstName, t.coPilot.firstName);
+	    assertEqual(cp.lastName, t.coPilot.lastName);
+	    assertEqual(cp.age, t.coPilot.age);
+	    assertEqual(cp.gender, t.coPilot.gender);
+	    assertEqual(cp.type, t.coPilot.type);
+	    
+	    assertEqual(c.manufacturer, t.car.manufacturer);
+	    assertEqual(c.weight, t.car.weight);
+	    assertEqual(c.zeroToOneHundred, t.car.zeroToOneHundred);
+	    assertEqual(c.topSpeed, t.car.topSpeed);
+	    assertEqual(c.horsePower, t.car.horsePower);    
+	  );
+	  
+	  public testAddSponsor() == (
+	  	IO`println("\t\t test add sponsor");
+	  	
+	  	t.addSponsor(s);
+	    assertTrue(s in set t.sponsors);
+	  );
+	  
+	  public testRemoveSponsor() == (
+	  	IO`println("\t\t test remove sponsor");
+	  	
+	  	t.removeSponsor(s);
+	    assertTrue(s not in set t.sponsors);
+	  );
+	
+	  public testAll() == (
+	    IO`println("\t team tests");
+	    testConstructor();
+	    testAddSponsor();
+	    testRemoveSponsor();
+	  );
+	  
 end TestTeam

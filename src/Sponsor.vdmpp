@@ -1,10 +1,16 @@
 class Sponsor
-instance variables
-	public name: seq of char;
 
-operations
-	public Sponsor(n: seq of char) res: Sponsor == (
-		name := n
-	)
-	post res.name = n;
+	types
+		public SponsorName = seq of char;
+
+	instance variables
+		public name: SponsorName;
+	
+	operations
+		public Sponsor(n: seq of char) res: Sponsor == (
+			name := n
+		)
+		pre len n > 2
+		post res.name = n;
+	
 end Sponsor
