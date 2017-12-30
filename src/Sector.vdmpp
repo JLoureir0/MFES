@@ -1,18 +1,15 @@
 class Sector
-
-	values
-		public INIT_AT_ZERO = 0;
 		
 	types
 		public String = seq1 of char;
 		public RealNumber = real;
+		public MapTeamsStats = map Team to Stat;
  
 	instance variables
 		public name: String;
 		public distance: RealNumber;
-		public time: RealNumber := INIT_AT_ZERO;
-		public averageSpeed: RealNumber := INIT_AT_ZERO;
-		
+		public teamsStats: MapTeamsStats := {|->};
+
 	operations
 		public Sector(n: String, d: RealNumber) res: Sector == (
 			name := n;
@@ -21,11 +18,10 @@ class Sector
 		pre d > 0
 		post res.name = n and res.distance = d;
 		
-		public setTime(t: RealNumber) ==  (
-			time := t;
-			averageSpeed := distance/time;
+		public addTeamRecord(team: Team, time: RealNumber)== (
+			teamsStats := teamsStats munion {team |-> new Stat(time, distance)};
 		)
-		pre t > 0
-		post time = t and averageSpeed = distance/time;
+		pre time > 0
+		post team in set dom teamsStats;
 	
 end Sector

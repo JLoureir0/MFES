@@ -58,13 +58,6 @@ class Section
 	 	pre distance = 0
 	 	post distance >= 0;
 	 	
-	 	public sumTimes() == (
-	 		for all s in set sectors do
-	 			time := time + s.time;
-	 	)
-	 	pre time = 0
-	 	post time >= 0;
-	 	
 	 	public setAvgSpeed() == (
 	 		averageSpeed := distance/time;
 	 	)
