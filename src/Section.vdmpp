@@ -55,7 +55,6 @@ class Section
 	 		for all s in set sectors do
 	 			distance := distance + s.distance;
 	 	)
-	 	pre distance = 0
 	 	post distance >= 0;
 	 	
 	 	public addTeamRecord(team: Team, time: RealNumber)== (

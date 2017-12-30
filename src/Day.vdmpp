@@ -1,12 +1,19 @@
 class Day
 
+	values
+		public INIT_AT_ZERO = 0;
+
 	types
 		public DaySections = seq1 of Section;
 		public DayParticipants = set1 of Team;
+		public RealNumber = real;
+		public MapTeamsStats = map Team to Stat;
 
 	instance variables
 		public sections: DaySections;
 		public teams: DayParticipants;
+		public teamsStats: MapTeamsStats := {|->};
+		public totalDistance : RealNumber := INIT_AT_ZERO;
 
 	operations
 		public Day(s: DaySections, t: DayParticipants) res: Day == (
@@ -15,5 +22,20 @@ class Day
 		)
 		pre len s > 0 and card t > 1
 		post res.sections = s and res.teams = t;
+		
+		public sumSectionsDistances() == (
+			for s in sections do
+				(
+					s.sumDistances();
+					totalDistance := totalDistance + s.distance;
+				);
+		);
+		
+		public addTeamRecord(team: Team, time: RealNumber)== (
+			sumSectionsDistances();
+			teamsStats := teamsStats munion {team |-> new Stat(time, totalDistance)};
+		)
+		pre time > 0 and team in set teams
+		post team in set dom teamsStats;
 	
 end Day
