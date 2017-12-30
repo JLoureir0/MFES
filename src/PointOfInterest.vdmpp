@@ -1,17 +1,17 @@
 class PointOfInterest
 	
 	types
-		public POIName = seq of char;
-		public POIKilometer = real;
+		public String = seq1 of char;
+		public RealNumber = real;
 		public POIType = Type`PointOfInterestType;
 
 	instance variables
-		public name: POIName;
-		public kilometre: POIKilometer;
+		public name: String;
+		public kilometre: RealNumber;
 		public type: POIType;
 	
 	operations
-		public PointOfInterest(n: seq of char, k: real, t: Type`PointOfInterestType) res: PointOfInterest == (
+		public PointOfInterest(n: String, k: RealNumber, t: POIType) res: PointOfInterest == (
 			name := n;
 			kilometre := k;
 			type := t;

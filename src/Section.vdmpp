@@ -4,25 +4,22 @@ class Section
 		public INIT_AT_ZERO = 0;
 
 	types
-		public SectionStartLocation = seq of char;
-		public SectionEndLocation = seq of char;
-		public SectionDistance = real;
-		public SectionTime = real;
-		public SectionAverageSpeed = real;
+		public String = seq1 of char;
+		public RealNumber = real;
 		public SectionSectors = set of Sector;
 		public SectionPointsOfInterest = set of PointOfInterest;
 
 	instance variables
-		public startLocation: SectionStartLocation;
-		public endLocation: SectionEndLocation;
-		public distance: SectionDistance := INIT_AT_ZERO;
-		public time: SectionTime := INIT_AT_ZERO;
-		public averageSpeed: SectionAverageSpeed := INIT_AT_ZERO;
+		public startLocation: String;
+		public endLocation: String;
+		public distance: RealNumber := INIT_AT_ZERO;
+		public time: RealNumber := INIT_AT_ZERO;
+		public averageSpeed: RealNumber := INIT_AT_ZERO;
 		public sectors: SectionSectors := {};
 		public pointsOfInterest: SectionPointsOfInterest := {};
 		
 	operations
-		public Section(sL: seq of char, eL: seq of char, d: real) res: Section == (
+		public Section(sL: String, eL: String, d: RealNumber) res: Section == (
 			startLocation := sL;
 			endLocation := eL;
 			distance := d;
@@ -75,7 +72,7 @@ class Section
 		post averageSpeed = distance/time;
 	 	
 	functions 	
-	 	private sumSectorsDistances(sectors: set of Sector) res:real ==(
+	 	private sumSectorsDistances(sectors: SectionSectors) res:RealNumber ==(
 	 		if sectors = {} then 0 else
 	 			let s in set sectors in s.distance + sumSectorsDistances(sectors \ {s}))
 	 			

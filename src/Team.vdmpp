@@ -4,23 +4,22 @@ class Team
 		public INIT_AT_ZERO = 0;
 
 	types
-		public TeamName = seq of char;
-		public TeamPilot = Pilot;
-		public TeamCoPilot = Pilot;
+		public String = seq1 of char;
+		public RealNumber = real;
+		public PilotType = Pilot;
 		public TeamCar = Car;
 		public TeamSponsors = set of Sponsor;
-		public TeamTotalTime = real;
-
+		
 	instance variables
-		public name: TeamName;
-		public pilot: TeamPilot;
-		public coPilot: TeamCoPilot;
+		public name: String;
+		public pilot: PilotType;
+		public coPilot: PilotType;
 		public car: TeamCar;
 		public sponsors: TeamSponsors := {};
-		public totalTime: TeamTotalTime := INIT_AT_ZERO;
+		public totalTime: RealNumber := INIT_AT_ZERO;
 	
 	operations
-		public Team(n: seq of char, p: Pilot, cp: Pilot, c: Car) res: Team == (
+		public Team(n: String, p: PilotType, cp: PilotType, c: TeamCar) res: Team == (
 			name := n;
 			pilot := p;
 			coPilot := cp;
@@ -41,7 +40,7 @@ class Team
 	 	pre sponsor in set sponsors
 	 	post sponsor not in set sponsors;
 	 	
-	 	public addTime(t: real) == (
+	 	public addTime(t: RealNumber) == (
 	 		totalTime := totalTime + t;
 	 	)
 	 	pre totalTime >= 0 and t > 0

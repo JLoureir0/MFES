@@ -4,21 +4,18 @@ class Car
 		public HORSEPOWER = 380;
 
 	types
-		public CarManufacturer = seq of char;
-		public CarWeight = real;
-		public CarZeroToOneHundred = real;
-		public CarTopSpeed = real;
-		public CarHorsePower = real;
+		public String = seq1 of char;
+		public RealNumber = real;
 
 	instance variables
-		public manufacturer: CarManufacturer;
-		public weight: CarWeight;
-		public zeroToOneHundred: CarZeroToOneHundred;
-		public topSpeed: CarTopSpeed;
-		public horsePower: CarHorsePower := HORSEPOWER;
+		public manufacturer: String;
+		public weight: RealNumber;
+		public zeroToOneHundred: RealNumber;
+		public topSpeed: RealNumber;
+		public horsePower: RealNumber := HORSEPOWER;
 	
 	operations
-		public Car(m: seq of char, w: real, ztoh: real, ts: real) res: Car == (
+		public Car(m: String, w: RealNumber, ztoh: RealNumber, ts: RealNumber) res: Car == (
 			manufacturer := m;
 			weight := w;
 			zeroToOneHundred := ztoh;

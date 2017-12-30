@@ -4,26 +4,24 @@ class Sector
 		public INIT_AT_ZERO = 0;
 		
 	types
-		public SectorName = seq of char;
-		public SectorDistance = real;
-		public SectorTime = real;
-		public SectorAverageSpeed = real;
-
+		public String = seq1 of char;
+		public RealNumber = real;
+ 
 	instance variables
-		public name: SectorName;
-		public distance: SectorDistance;
-		public time: SectorTime := INIT_AT_ZERO;
-		public averageSpeed: SectorAverageSpeed := INIT_AT_ZERO;
+		public name: String;
+		public distance: RealNumber;
+		public time: RealNumber := INIT_AT_ZERO;
+		public averageSpeed: RealNumber := INIT_AT_ZERO;
 		
 	operations
-		public Sector(n: seq of char, d: real) res: Sector == (
+		public Sector(n: String, d: RealNumber) res: Sector == (
 			name := n;
 			distance := d;
 		)
 		pre d > 0
 		post res.name = n and res.distance = d;
 		
-		public setTime(t: real) ==  (
+		public setTime(t: RealNumber) ==  (
 			time := t;
 			averageSpeed := distance/time;
 		)

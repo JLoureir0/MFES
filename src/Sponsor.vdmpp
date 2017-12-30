@@ -1,14 +1,14 @@
 class Sponsor
 
 	types
-		public SponsorName = seq of char;
+		public String = seq1 of char;
 
 	instance variables
-		public name: SponsorName;
+		public name: String;
 	
 	operations
-		public Sponsor(n: seq of char) res: Sponsor == (
-			name := n
+		public Sponsor(n: String) res: Sponsor == (
+			name := n;
 		)
 		pre len n > 2
 		post res.name = n;

@@ -1,26 +1,25 @@
 class Pilot
 
 	types
-		public PilotFirstName = seq of char;
-		public PilotLastName = seq of char;
+		public String = seq1 of char;
 		public PilotAge = nat1;
 		public PilotGender = Type`Gender;
 		public PilotType = Type`PilotType;
 
 	instance variables
-		public firstName: PilotFirstName;
-		public lastName: PilotLastName;
+		public firstName: String;
+		public lastName: String;
 		public age: PilotAge;
 		public gender: PilotGender;
 		public type: PilotType;
 	
 	operations
-		public Pilot(fName: seq of char, lName: seq of char, a:nat1, g:Type`Gender, t:Type`PilotType) res: Pilot == (
+		public Pilot(fName: String, lName: String, a: PilotAge, g:PilotGender, t:PilotType) res: Pilot == (
 			firstName := fName;
 			lastName := lName;
-			age:= a;
-			gender:=g;
-			type:=t;
+			age := a;
+			gender := g;
+			type := t;
 		)
 		pre a >= 30 and a <= 60
 		post res.firstName = fName and res.lastName = lName and res.age = a and res.gender = g and res.type = t;

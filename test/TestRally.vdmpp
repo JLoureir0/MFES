@@ -51,7 +51,7 @@ class TestRally is subclass of TestSuite
   	public testMapTeamSections() == (
   			
   		r.mapTeamSections();
-  		--r.days(1).sections(1).addSector(sec1);
+  		
   		--IO`printf("\t\t Team1 sections: %s\n", [r.teamSections(t1)]);
   		--IO`printf("\t\t Team2 sections: %s\n", [r.teamSections(t2)]);
   		

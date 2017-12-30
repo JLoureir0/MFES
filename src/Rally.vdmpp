@@ -4,17 +4,17 @@ class Rally
 		public TIME_PENALTY = 50;
 
 	types
+		public String = seq1 of char;
 		public RallyCategory = Type`RallyType;
-		public RallyLocal = seq of char;
-		public RallyDays = seq of Day;
-		public RallyParticipants = set of Team;
+		public RallyDays = seq1 of Day;
+		public RallyParticipants = set1 of Team;
 		public RallyWinner = Team;
 		public RallyTeamSections = map Team to seq of Section;
 
 	instance variables
 	
 		public category: RallyCategory;
-		public local: RallyLocal;
+		public local: String;
 		public days: RallyDays;
 		public participants: RallyParticipants;
 		public winner: RallyWinner;
@@ -22,7 +22,7 @@ class Rally
 		
 	operations
 
-		public Rally(c: Type`RallyType, l: seq of char, d: seq of Day, p: set of Team) res: Rally == (
+		public Rally(c: RallyCategory, l: String, d: RallyDays, p: RallyParticipants) res: Rally == (
 			category := c;
 			local := l;
 			days := d;
