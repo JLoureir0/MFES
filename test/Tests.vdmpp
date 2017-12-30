@@ -12,6 +12,7 @@ class Tests
       new TestSection().testAll();
       new TestDay().testAll();
       new TestRally().testAll();
+      new TestStat().testAll();
       IO`println("Tests finished");
     );
     

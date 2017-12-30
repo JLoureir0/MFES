@@ -1,0 +1,20 @@
+class Stat
+
+	types
+		public RealNumber = real;
+		
+	instance variables
+		public time: RealNumber;
+		public distance: RealNumber;
+		public averageSpeed: RealNumber;
+	
+	operations
+		public Stat(t: RealNumber, d: RealNumber) res: Stat == (
+			time := t;
+			distance := d;
+			averageSpeed := distance/time;
+		)
+		pre t > 0 and d > 0
+		post res.time = t and res.distance = d and res.averageSpeed = res.distance/res.time;
+	
+end Stat

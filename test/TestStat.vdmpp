@@ -1,0 +1,19 @@
+class TestStat is subclass of TestSuite
+
+	instance variables
+		s: Stat := new Stat(10, 200);
+	
+	operations
+	  public testConstructor() == (
+	    IO`println("\t\t test constructor");
+	    assertEqual(10, s.time);
+	    assertEqual(200, s.distance);
+	    assertEqual(200/10, s.averageSpeed);
+	  );
+	
+	  public testAll() == (
+	    IO`println("\t stat tests");
+	    testConstructor();
+	  );
+	  
+end TestStat
