@@ -8,15 +8,15 @@ class Section
 		public RealNumber = real;
 		public SectionSectors = set of Sector;
 		public SectionPointsOfInterest = set of PointOfInterest;
+		public MapTeamsStats = map Team to Stat;
 
 	instance variables
 		public startLocation: String;
 		public endLocation: String;
 		public distance: RealNumber := INIT_AT_ZERO;
-		public time: RealNumber := INIT_AT_ZERO;
-		public averageSpeed: RealNumber := INIT_AT_ZERO;
 		public sectors: SectionSectors := {};
 		public pointsOfInterest: SectionPointsOfInterest := {};
+		public teamsStats: MapTeamsStats := {|->};
 		
 	operations
 		public Section(sL: String, eL: String, d: RealNumber) res: Section == (
@@ -58,11 +58,11 @@ class Section
 	 	pre distance = 0
 	 	post distance >= 0;
 	 	
-	 	public setAvgSpeed() == (
-	 		averageSpeed := distance/time;
-	 	)
-	 	pre distance >= 0 and time >= 0
-		post averageSpeed = distance/time;
+	 	public addTeamRecord(team: Team, time: RealNumber)== (
+			teamsStats := teamsStats munion {team |-> new Stat(time, distance)};
+		)
+		pre time > 0
+		post team in set dom teamsStats;
 	 	
 	functions 	
 	 	private sumSectorsDistances(sectors: SectionSectors) res:RealNumber ==(
