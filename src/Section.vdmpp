@@ -26,19 +26,8 @@ class Section
 		)
 		pre d > 0
 		post res.startLocation = sL and res.endLocation = eL and res.distance = d;
-		
-		public addPointOfInterest(p: PointOfInterest) == (
-			pointsOfInterest := pointsOfInterest union {p};
-		)
-		pre p.kilometre < distance and p not in set pointsOfInterest 
-		post p in set pointsOfInterest;
-		
-		public removePointOfInterest(p: PointOfInterest) == (
-	 		pointsOfInterest := pointsOfInterest \ {p};
-	 	)
-	 	pre p in set pointsOfInterest
-	 	post p not in set pointsOfInterest;
 	 	
+	 	--Sectors
 	 	public addSector(s: Sector) == (
 			sectors := sectors union {s};
 		)
@@ -57,11 +46,36 @@ class Section
 	 	)
 	 	post distance >= 0;
 	 	
-	 	public addTeamRecord(team: Team, time: RealNumber)== (
+	 	--POI
+		public addPointOfInterest(p: PointOfInterest) == (
+			pointsOfInterest := pointsOfInterest union {p};
+		)
+		pre p.kilometre < distance and p not in set pointsOfInterest 
+		post p in set pointsOfInterest;
+		
+		public removePointOfInterest(p: PointOfInterest) == (
+	 		pointsOfInterest := pointsOfInterest \ {p};
+	 	)
+	 	pre p in set pointsOfInterest
+	 	post p not in set pointsOfInterest;
+	 	
+	 	--Stats
+	 	public addTeamRecord(team: Team, time: RealNumber) == (
 			teamsStats := teamsStats munion {team |-> new Stat(time, distance)};
 		)
 		pre time > 0
 		post team in set dom teamsStats;
+		
+		--Updates teams stats through all sectors
+		public getTeamsRecords() == (
+			for all s in set sectors do
+				for all t in set dom s.teamsStats do
+					(
+					if(t in set dom teamsStats)
+						then teamsStats(t).updateStat(s.teamsStats(t).time, s.teamsStats(t).distance)
+					else teamsStats := teamsStats munion {t |-> s.teamsStats(t)};
+					)
+		);
 	 	
 	functions 	
 	 	private sumSectorsDistances(sectors: SectionSectors) res:RealNumber ==(

@@ -18,7 +18,7 @@ class Sector
 		pre d > 0
 		post res.name = n and res.distance = d;
 		
-		public addTeamRecord(team: Team, time: RealNumber)== (
+		public addTeamRecord(team: Team, time: RealNumber) == (
 			teamsStats := teamsStats munion {team |-> new Stat(time, distance)};
 		)
 		pre time > 0

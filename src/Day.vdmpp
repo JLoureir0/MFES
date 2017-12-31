@@ -31,7 +31,7 @@ class Day
 				);
 		);
 		
-		public addTeamRecord(team: Team, time: RealNumber)== (
+		public addTeamRecord(team: Team, time: RealNumber) == (
 			sumSectionsDistances();
 			teamsStats := teamsStats munion {team |-> new Stat(time, totalDistance)};
 		)
