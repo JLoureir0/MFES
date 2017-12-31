@@ -36,33 +36,36 @@ class TestRally is subclass of TestSuite
 
 	operations
 	
-  	public testConstructor() == (
+  	public testConstructor: () ==> ()
+	  	testConstructor() == (
   	
-  		IO`println("\t\t test constructor");
-  		
-  		assertEqual(<TimeTrial>, r.category);
-  		assertEqual("Italy", r.local);
-  		assertEqual("Venezia", r.days(1).sections(1).startLocation);
-    	assertTrue(t1 in set r.participants);
-    	assertTrue(t2 in set r.participants);
-    	
-  	);
+	  		IO`println("\t\t test constructor");
+	  		
+	  		assertEqual(<TimeTrial>, r.category);
+	  		assertEqual("Italy", r.local);
+	  		assertEqual("Venezia", r.days(1).sections(1).startLocation);
+	    	assertTrue(t1 in set r.participants);
+	    	assertTrue(t2 in set r.participants);
+	    	
+	  	);
   	
-  	public testMapTeamSections() == (
-  			
-  		r.mapTeamSections();
-  		
-  		--IO`printf("\t\t Team1 sections: %s\n", [r.teamSections(t1)]);
-  		--IO`printf("\t\t Team2 sections: %s\n", [r.teamSections(t2)]);
-  		
-  		assertEqual(allSections, r.teamSections(t1));
-  		assertEqual(allSections, r.teamSections(t2));
-  	);
+  	public testMapTeamSections: () ==> ()
+	  	testMapTeamSections() == (
+	  			
+	  		r.mapTeamSections();
+	  		
+	  		--IO`printf("\t\t Team1 sections: %s\n", [r.teamSections(t1)]);
+	  		--IO`printf("\t\t Team2 sections: %s\n", [r.teamSections(t2)]);
+	  		
+	  		assertEqual(allSections, r.teamSections(t1));
+	  		assertEqual(allSections, r.teamSections(t2));
+	  	);
 
-  	public testAll() == (
-    	IO`println("\t rally tests");
-    	testConstructor();
-    	testMapTeamSections();
-  	);
+  	public testAll: () ==> ()
+	  	testAll() == (
+	    	IO`println("\t rally tests");
+	    	testConstructor();
+	    	testMapTeamSections();
+	  	);
 
 end TestRally

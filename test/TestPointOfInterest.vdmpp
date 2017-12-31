@@ -4,16 +4,18 @@ class TestPointOfInterest is subclass of TestSuite
 		p: PointOfInterest := new PointOfInterest("Colosseo", 20, <Locality>);
 	
 	operations
-	  public testConstructor() == (
-	    IO`println("\t\t test constructor");
-	    assertEqual("Colosseo", p.name);
-	    assertEqual(20, p.kilometre);
-	    assertEqual(<Locality>, p.type);
-	   );
+	  public testConstructor: () ==> ()
+	  	testConstructor() == (
+		    IO`println("\t\t test constructor");
+		    assertEqual("Colosseo", p.name);
+		    assertEqual(20, p.kilometre);
+		    assertEqual(<Locality>, p.type);
+		   );
 	   
-	  public testAll() == (
-	    IO`println("\t point of interest tests");
-	    testConstructor();
-	  );
+	  public testAll: () ==> ()
+	  	testAll() == (
+		    IO`println("\t point of interest tests");
+		    testConstructor();
+		  );
 	  
 end TestPointOfInterest

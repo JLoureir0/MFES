@@ -5,24 +5,26 @@ class TestPilot is subclass of TestSuite
 		cp: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
 	
 	operations
-	  public testConstructor() == (
-	    IO`println("\t\t test constructor");   
-	    assertEqual("Sébastien",p.firstName);
-	    assertEqual("Loeb",p.lastName);
-	    assertEqual(43,p.age);
-	    assertEqual(<Male>,p.gender);
-	    assertEqual(<Pilot>,p.type);
-	    
-	    assertEqual("Daniel",cp.firstName);
-	    assertEqual("Elena",cp.lastName);
-	    assertEqual(45,cp.age);
-	    assertEqual(<Male>,cp.gender);
-	    assertEqual(<CoPilot>,cp.type);
-	  );
+	  public testConstructor: () ==> ()
+	  	testConstructor() == (
+		    IO`println("\t\t test constructor");   
+		    assertEqual("Sébastien",p.firstName);
+		    assertEqual("Loeb",p.lastName);
+		    assertEqual(43,p.age);
+		    assertEqual(<Male>,p.gender);
+		    assertEqual(<Pilot>,p.type);
+		    
+		    assertEqual("Daniel",cp.firstName);
+		    assertEqual("Elena",cp.lastName);
+		    assertEqual(45,cp.age);
+		    assertEqual(<Male>,cp.gender);
+		    assertEqual(<CoPilot>,cp.type);
+		  );
 	
-	  public testAll() == (
-	    IO`println("\t pilot tests");
-	    testConstructor();
-	  );
+	  public testAll: () ==> ()
+	  	testAll() == (
+		    IO`println("\t pilot tests");
+		    testConstructor();
+		  );
 	  
 end TestPilot

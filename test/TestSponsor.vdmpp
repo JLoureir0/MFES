@@ -4,14 +4,16 @@ class TestSponsor is subclass of TestSuite
 		s: Sponsor := new Sponsor("Michelin");
 	
 	operations
-	  public testConstructor() == (
-	    IO`println("\t\t test constructor");
-	    assertEqual("Michelin", s.name);
-	  );
+	  public testConstructor: () ==> ()
+	  	testConstructor() == (
+		    IO`println("\t\t test constructor");
+		    assertEqual("Michelin", s.name);
+		  );
 	
-	  public testAll() == (
-	    IO`println("\t sponsor tests");
-	    testConstructor();
-	  );
+	  public testAll: () ==> ()
+	  	testAll() == (
+		    IO`println("\t sponsor tests");
+		    testConstructor();
+		  );
 	  
 end TestSponsor
