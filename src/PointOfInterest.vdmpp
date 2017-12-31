@@ -11,12 +11,14 @@ class PointOfInterest
 		public type: POIType;
 	
 	operations
-		public PointOfInterest(n: String, k: RealNumber, t: POIType) res: PointOfInterest == (
-			name := n;
-			kilometre := k;
-			type := t;
-		)
+		public PointOfInterest: String * RealNumber * POIType ==> PointOfInterest 
+			PointOfInterest(n, k, t) == (
+				name := n;
+				kilometre := k;
+				type := t;
+				return self;
+			)
 		pre k > 0
-		post res.name = n and res.kilometre = k and res.type = t;
+		post self.name = n and self.kilometre = k and self.type = t;
 
 end PointOfInterest

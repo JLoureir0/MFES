@@ -14,14 +14,16 @@ class Pilot
 		public type: PilotType;
 	
 	operations
-		public Pilot(fName: String, lName: String, a: PilotAge, g:PilotGender, t:PilotType) res: Pilot == (
-			firstName := fName;
-			lastName := lName;
-			age := a;
-			gender := g;
-			type := t;
-		)
+		public Pilot: String * String * PilotAge * PilotGender * PilotType ==> Pilot
+			Pilot(fName, lName, a, g, t) == (
+				firstName := fName;
+				lastName := lName;
+				age := a;
+				gender := g;
+				type := t;
+				return self;
+			)
 		pre a >= 30 and a <= 60
-		post res.firstName = fName and res.lastName = lName and res.age = a and res.gender = g and res.type = t;
+		post self.firstName = fName and self.lastName = lName and self.age = a and self.gender = g and self.type = t;
 	
 end Pilot

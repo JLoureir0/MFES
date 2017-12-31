@@ -7,10 +7,12 @@ class Sponsor
 		public name: String;
 	
 	operations
-		public Sponsor(n: String) res: Sponsor == (
-			name := n;
-		)
+		public Sponsor: String ==> Sponsor
+			Sponsor(n) == (
+				name := n;
+				return self;
+			)
 		pre len n > 2
-		post res.name = n;
+		post self.name = n;
 	
 end Sponsor

@@ -11,16 +11,19 @@ class Sector
 		public teamsStats: MapTeamsStats := {|->};
 
 	operations
-		public Sector(n: String, d: RealNumber) res: Sector == (
-			name := n;
-			distance := d;
-		)
+		public Sector: String * RealNumber ==> Sector
+			Sector(n, d) == (
+				name := n;
+				distance := d;
+				return self;
+			)
 		pre d > 0
-		post res.name = n and res.distance = d;
+		post self.name = n and self.distance = d;
 		
-		public addTeamRecord(team: Team, time: RealNumber) == (
-			teamsStats := teamsStats munion {team |-> new Stat(time, distance)};
-		)
+		public addTeamRecord: Team * RealNumber ==> ()
+			addTeamRecord(team, time) == (
+				teamsStats := teamsStats munion {team |-> new Stat(time, distance)};
+			)
 		pre time > 0
 		post team in set dom teamsStats;
 	

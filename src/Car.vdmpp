@@ -15,13 +15,15 @@ class Car
 		public horsePower: RealNumber := HORSEPOWER;
 	
 	operations
-		public Car(m: String, w: RealNumber, ztoh: RealNumber, ts: RealNumber) res: Car == (
-			manufacturer := m;
-			weight := w;
-			zeroToOneHundred := ztoh;
-			topSpeed := ts;
+		public Car: String * RealNumber * RealNumber * RealNumber ==> Car 
+			Car(m, w, ztoh, ts) == (
+				manufacturer := m;
+				weight := w;
+				zeroToOneHundred := ztoh;
+				topSpeed := ts;
+				return self;
 		)
 		pre w > 1190 and ztoh <= 4 and ts > 200
-		post res.manufacturer = m and res.weight = w and res.zeroToOneHundred = ztoh and res.topSpeed = ts;
+		post self.manufacturer = m and self.weight = w and self.zeroToOneHundred = ztoh and self.topSpeed = ts;
 		
 end Car

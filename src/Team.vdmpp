@@ -19,37 +19,43 @@ class Team
 		public totalTime: RealNumber := INIT_AT_ZERO;
 	
 	operations
-		public Team(n: String, p: PilotType, cp: PilotType, c: TeamCar) res: Team == (
-			name := n;
-			pilot := p;
-			coPilot := cp;
-			car := c;
-		)
+		public Team: String * PilotType * PilotType * TeamCar ==> Team
+			Team(n, p, cp, c) == (
+				name := n;
+				pilot := p;
+				coPilot := cp;
+				car := c;
+				return self;
+			)
 		pre p.type = <Pilot> and cp.type = <CoPilot>
-		post res.name = n and res.pilot = p and res.coPilot = cp and res.car = c;
+		post self.name = n and self.pilot = p and self.coPilot = cp and self.car = c;
 		
-		public addSponsor(sponsor: Sponsor) == (
-	 		sponsors := sponsors union {sponsor};
-	 	)
+		public addSponsor: Sponsor ==> ()
+			addSponsor(sponsor) == (
+	 			sponsors := sponsors union {sponsor};
+	 		)
 	 	pre sponsor not in set sponsors
 	 	post sponsor in set sponsors;
 	 	
-	 	public removeSponsor(sponsor: Sponsor) == (
-	 		sponsors := sponsors \ {sponsor};
-	 	)
+	 	public removeSponsor: Sponsor ==> ()
+	 		removeSponsor(sponsor) == (
+	 			sponsors := sponsors \ {sponsor};
+	 		)
 	 	pre sponsor in set sponsors
 	 	post sponsor not in set sponsors;
 	 	
-	 	public addTime(t: RealNumber) == (
-	 		totalTime := totalTime + t;
-	 	)
+	 	public addTime: RealNumber ==> ()
+	 		addTime(t) == (
+	 			totalTime := totalTime + t;
+	 		)
 	 	pre totalTime >= 0 and t > 0
 	 	post totalTime = totalTime + t;
 	 	
 	 	--in case a team misses a day of competition
-	 	public penalty() == (
-	 		addTime(Rally`TIME_PENALTY);
-	 	)
+	 	public penalty: () ==> ()
+	 		penalty() == (
+	 			addTime(Rally`TIME_PENALTY);
+	 		)
 	 	pre totalTime >= 0
 	 	post totalTime = totalTime + Rally`TIME_PENALTY;
 	

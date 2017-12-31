@@ -16,38 +16,42 @@ class Day
 		public totalDistance : RealNumber := INIT_AT_ZERO;
 
 	operations
-		public Day(s: DaySections, t: DayParticipants) res: Day == (
-			sections := s;
-			teams := t;
+		public Day: DaySections * DayParticipants ==> Day
+			Day(s, t) == (
+				sections := s;
+				teams := t;
+				return self;
 		)
 		pre len s > 0 and card t > 1
-		post res.sections = s and res.teams = t;
+		post self.sections = s and self.teams = t;
 		
-		public sumSectionsDistances() == (
-			for s in sections do
-				(
-					s.sumDistances();
-					totalDistance := totalDistance + s.distance;
-				);
-		);
+		public sumSectionsDistances: () ==> ()
+			sumSectionsDistances() == (
+				for s in sections do
+					(
+						s.sumDistances();
+						totalDistance := totalDistance + s.distance;
+					);
+			);
 		
-		public addTeamRecord(team: Team, time: RealNumber) == (
-			sumSectionsDistances();
-			teamsStats := teamsStats munion {team |-> new Stat(time, totalDistance)};
-		)
+		public addTeamRecord: Team * RealNumber ==> () 
+			addTeamRecord(team, time) == (
+				sumSectionsDistances();
+				teamsStats := teamsStats munion {team |-> new Stat(time, totalDistance)};
+			)
 		pre time > 0 and team in set teams
 		post team in set dom teamsStats;
 		
 		--Updates days stats through all sections
-		public getTeamsRecords() == (
-			for s in sections do
-				for all t in set dom s.teamsStats do
-					(
-					if(t in set dom teamsStats)
-						then teamsStats(t).updateStat(s.teamsStats(t).time, s.teamsStats(t).distance)
-					else teamsStats := teamsStats munion {t |-> s.teamsStats(t)};
-					)
-			
-		);
+		public getTeamsRecords: () ==> ()
+			getTeamsRecords() == (
+				for s in sections do
+					for all t in set dom s.teamsStats do
+						(
+						if(t in set dom teamsStats)
+							then teamsStats(t).updateStat(s.teamsStats(t).time, s.teamsStats(t).distance)
+						else teamsStats := teamsStats munion {t |-> s.teamsStats(t)};
+						)
+			);
 	
 end Day

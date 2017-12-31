@@ -22,29 +22,33 @@ class Rally
 		
 	operations
 
-		public Rally(c: RallyCategory, l: String, d: RallyDays, p: RallyParticipants) res: Rally == (
-			category := c;
-			local := l;
-			days := d;
-			participants := p;
-		)
+		public Rally: RallyCategory * String * RallyDays * RallyParticipants ==> Rally 
+			Rally(c, l, d, p) == (
+				category := c;
+				local := l;
+				days := d;
+				participants := p;
+				return self;
+			)
 		pre len d > 0 and card p > 1
-		post res.days = d and res.participants = p;
+		post self.days = d and self.participants = p;
 		
-		public assignWinner(w: Team) == (
-			winner := w;
-		)
+		public assignWinner: Team ==> ()
+			assignWinner(w) == (
+				winner := w;
+			)
 		pre w in set participants  
 		post winner = w;
 		
-		public mapTeamSections() == (
-			for d in days do
-				for all t in set d.teams do
-					(
-					if(t in set dom teamSections)
-						then teamSections(t) := teamSections(t) ^ d.sections
-					else teamSections := teamSections munion {t |-> d.sections};
-					)
-		)
+		public mapTeamSections: () ==> () 
+			mapTeamSections() == (
+				for d in days do
+					for all t in set d.teams do
+						(
+						if(t in set dom teamSections)
+							then teamSections(t) := teamSections(t) ^ d.sections
+						else teamSections := teamSections munion {t |-> d.sections};
+						)
+			)
 	
 end Rally
