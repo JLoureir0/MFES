@@ -37,5 +37,17 @@ class Day
 		)
 		pre time > 0 and team in set teams
 		post team in set dom teamsStats;
+		
+		--Updates days stats through all sections
+		public getTeamsRecords() == (
+			for s in sections do
+				for all t in set dom s.teamsStats do
+					(
+					if(t in set dom teamsStats)
+						then teamsStats(t).updateStat(s.teamsStats(t).time, s.teamsStats(t).distance)
+					else teamsStats := teamsStats munion {t |-> s.teamsStats(t)};
+					)
+			
+		);
 	
 end Day

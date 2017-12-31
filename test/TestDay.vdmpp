@@ -32,23 +32,59 @@ class TestDay is subclass of TestSuite
     	
   	);
   	
-  	public testTeamRecord() == (
+  	public testAddTeamRecord() == (
   		
-  		IO`println("\t\t test team record");
+  		IO`println("\t\t test add team record");
 	  	
 	 		d.addTeamRecord(t1, 500); 	
 				
-			--IO`printf("\t\t Team1 Stat: %s\n", [d.teamsStats(t1)]);
+			--IO`printf("\t\t Day Stats: %s\n", [d.teamsStats]);
 				
 			assertTrue(t1 in set dom d.teamsStats);
 			assertEqual(423.73/500, d.teamsStats(t1).averageSpeed);
 	
 	  );
+	  
+	  public testGetTeamsRecords() == (
+	  
+	  	IO`println("\t\t test get teams records");
+	  	
+	  	(
+	  		
+	  		dcl s1: Section := new Section("Paris", "Nantes", 300.8);
+	  		dcl s2: Section := new Section("Lyon", "Marselha", 518);
+	  		
+	  		dcl sectns : seq of Section := [s1, s2];
+	  	 
+	  		dcl p3: Pilot := new Pilot("Colin", "McRae", 41, <Male>, <Pilot>);
+				dcl cp3: Pilot := new Pilot("Nicky", "Grist", 45, <Male>, <CoPilot>);
+				dcl c3: Car := new Car("Subaru", 1271.71, 2.5, 275.5);
+				dcl t3: Team := new Team("Kronos", p3, cp3, c3);
+				
+				dcl teamz: set of Team := {t1, t3};
+				
+				dcl d: Day := new Day(sectns, teamz);
+				
+				s1.addTeamRecord(t3, 123);
+				s1.addTeamRecord(t1, 128);
+				s2.addTeamRecord(t3, 210);
+				s2.addTeamRecord(t1, 207);
+				
+				d.getTeamsRecords();
+				
+				--IO`printf("\t\t Day Stats: %s\n", [d.teamsStats]);
+				
+				assertTrue(t1 in set dom d.teamsStats);
+				assertEqual(818.8/333, d.teamsStats(t3).averageSpeed);
+	  	)
+	  	
+	  );
 
   	public testAll() == (
     	IO`println("\t day tests");
     	testConstructor();
-    	testTeamRecord();
+    	testAddTeamRecord();
+    	testGetTeamsRecords();
   	);
 
 end TestDay
