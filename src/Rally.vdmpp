@@ -60,10 +60,7 @@ class Rally
 		public sumDaysDistances: () ==> ()
 			sumDaysDistances() == (
 				for d in days do
-					(
-						d.sumSectionsDistances();
 						totalDistance := totalDistance + d.totalDistance;
-					);
 			);
 		
 		public addTeamRecord: Team * RealNumber ==> () 

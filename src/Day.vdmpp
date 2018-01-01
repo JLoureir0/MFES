@@ -20,6 +20,7 @@ class Day
 			Day(s, t) == (
 				sections := s;
 				teams := t;
+				sumSectionsDistances();
 				return self;
 		)
 		pre len s > 0 and card t > 1
@@ -36,7 +37,6 @@ class Day
 		
 		public addTeamRecord: Team * RealNumber ==> () 
 			addTeamRecord(team, time) == (
-				sumSectionsDistances();
 				teamsStats := teamsStats munion {team |-> new Stat(time, totalDistance)};
 			)
 		pre time > 0 and team in set teams

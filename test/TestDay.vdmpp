@@ -36,7 +36,8 @@ class TestDay is subclass of TestSuite
   		
 	  		IO`println("\t\t test add team record");
 		  	
-		 		d.addTeamRecord(t1, 500); 	
+		 		d.addTeamRecord(t1, 500);
+		 		d.addTeamRecord(t2, 600);
 					
 				--IO`printf("\t\t Day Stats: %s\n", [d.teamsStats]);
 					
@@ -51,7 +52,6 @@ class TestDay is subclass of TestSuite
 		  	IO`println("\t\t test get teams records");
 		  	
 		  	(
-		  		
 		  		dcl s1: Section := new Section("Paris", "Nantes", 300.8);
 		  		dcl s2: Section := new Section("Lyon", "Marselha", 518);
 		  		
