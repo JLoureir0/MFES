@@ -1,15 +1,18 @@
 class Rally
 
 	values
+		public INIT_AT_ZERO = 0;
 		public TIME_PENALTY = 50;
 
 	types
 		public String = seq1 of char;
+		public RealNumber = real;
 		public RallyCategory = Type`RallyType;
 		public RallyDays = seq1 of Day;
 		public RallyParticipants = set1 of Team;
 		public RallyWinner = Team;
 		public RallyTeamSections = map Team to seq of Section;
+		public MapTeamsStats = map Team to Stat;
 
 	instance variables
 	
@@ -17,8 +20,10 @@ class Rally
 		public local: String;
 		public days: RallyDays;
 		public participants: RallyParticipants;
+		public totalDistance : RealNumber := INIT_AT_ZERO;
 		public winner: RallyWinner;
 		public teamSections: RallyTeamSections := {|->};
+		public teamsStats: MapTeamsStats := {|->};
 		
 	operations
 
@@ -28,6 +33,7 @@ class Rally
 				local := l;
 				days := d;
 				participants := p;
+				sumDaysDistances();
 				return self;
 			)
 		pre len d > 0 and card p > 1
@@ -49,6 +55,34 @@ class Rally
 							then teamSections(t) := teamSections(t) ^ d.sections
 						else teamSections := teamSections munion {t |-> d.sections};
 						)
+			);
+		
+		public sumDaysDistances: () ==> ()
+			sumDaysDistances() == (
+				for d in days do
+					(
+						d.sumSectionsDistances();
+						totalDistance := totalDistance + d.totalDistance;
+					);
+			);
+		
+		public addTeamRecord: Team * RealNumber ==> () 
+			addTeamRecord(team, time) == (
+				teamsStats := teamsStats munion {team |-> new Stat(time, totalDistance)};
 			)
+		pre time > 0 and team in set participants
+		post team in set dom teamsStats;
+		
+		--Updates rally stats through all days
+		public getTeamsRecords: () ==> ()
+			getTeamsRecords() == (
+				for d in days do
+					for all t in set dom d.teamsStats do
+						(
+						if(t in set dom teamsStats)
+							then teamsStats(t).updateStat(d.teamsStats(t).time, d.teamsStats(t).distance)
+						else teamsStats := teamsStats munion {t |-> d.teamsStats(t)};
+						)
+			);
 	
 end Rally

@@ -1,39 +1,5 @@
 class TestRally is subclass of TestSuite
 	
-	instance variables
-	
-		s1: Section := new Section("Venezia", "Bologna", 248.41);
-		s2: Section := new Section("Milano", "Verona", 175.32);
-		s3: Section := new Section("Lisboa", "Porto", 300);
-		s4: Section := new Section("Viseu", "Porto", 120);
-		
-		sec1: Sector := new Sector("Troco1", 20);
-		sec2: Sector := new Sector("Troco2", 30);
-		
-		sections1: seq of Section := [s1, s2];
-		sections2: seq of Section := [s3, s4];
-		allSections: seq of Section := sections1 ^ sections2;
-		
-		p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
-		cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
-		c1: Car := new Car("Ford", 1271.71, 2.5, 275.5);
-		t1: Team := new Team("M-Sport World Rally Team", p1, cp1, c1);
-		
-		p2: Pilot := new Pilot("Sébastien", "Ogier", 34, <Male>, <Pilot>);
-		cp2: Pilot := new Pilot("Julien", "Ingrassia", 38, <Male>, <CoPilot>);
-		c2: Car := new Car("Volkswagen", 1200, 3.5, 250);
-		t2: Team := new Team("M-Sport World Rally Team", p2, cp2, c2);
-		
-		participants: set of Team := {t1, t2};
-		
-		d1: Day := new Day(sections1, participants);
-		d2: Day := new Day(sections2, participants);
-		
-		days: seq of Day := [d1, d2];
-		
-		r: Rally := new Rally(<TimeTrial>, "Italy", days, participants);
-
-
 	operations
 	
   	public testConstructor: () ==> ()
@@ -41,31 +7,150 @@ class TestRally is subclass of TestSuite
   	
 	  		IO`println("\t\t test constructor");
 	  		
-	  		assertEqual(<TimeTrial>, r.category);
-	  		assertEqual("Italy", r.local);
-	  		assertEqual("Venezia", r.days(1).sections(1).startLocation);
-	    	assertTrue(t1 in set r.participants);
-	    	assertTrue(t2 in set r.participants);
+	  		(
+	  			dcl s1: Section := new Section("Venezia", "Bologna", 248.41);
+					dcl s2: Section := new Section("Milano", "Verona", 175.32);
+					dcl s3: Section := new Section("Lisboa", "Porto", 300);
+					dcl s4: Section := new Section("Viseu", "Porto", 120);
+					
+					dcl sec1: Sector := new Sector("Troco1", 20);
+					dcl sec2: Sector := new Sector("Troco2", 30);
+					
+					dcl sections1: seq of Section := [s1, s2];
+					dcl sections2: seq of Section := [s3, s4];
+					dcl allSections: seq of Section := sections1 ^ sections2;
+					
+					dcl p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
+					dcl cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
+					dcl c1: Car := new Car("Ford", 1271.71, 2.5, 275.5);
+					dcl t1: Team := new Team("M-Sport World Rally Team", p1, cp1, c1);
+					
+					dcl p2: Pilot := new Pilot("Sébastien", "Ogier", 34, <Male>, <Pilot>);
+					dcl cp2: Pilot := new Pilot("Julien", "Ingrassia", 38, <Male>, <CoPilot>);
+					dcl c2: Car := new Car("Volkswagen", 1200, 3.5, 250);
+					dcl t2: Team := new Team("M-Sport World Rally Team", p2, cp2, c2);
+					
+					dcl participants: set of Team := {t1, t2};
+					
+					dcl d1: Day := new Day(sections1, participants);
+					dcl d2: Day := new Day(sections2, participants);
+					
+					dcl days: seq of Day := [d1, d2];
+					
+					dcl r: Rally := new Rally(<TimeTrial>, "Italy", days, participants);
+					
+					assertEqual(<TimeTrial>, r.category);
+		  		assertEqual("Italy", r.local);
+		  		assertEqual("Venezia", r.days(1).sections(1).startLocation);
+		    	assertTrue(t1 in set r.participants);
+		    	assertTrue(t2 in set r.participants);
+	  		
+	  		)
 	    	
 	  	);
   	
   	public testMapTeamSections: () ==> ()
 	  	testMapTeamSections() == (
 	  			
-	  		r.mapTeamSections();
+	  			IO`println("\t\t test map teams sections");
+	  			
+	  		(
+	  			dcl s1: Section := new Section("Venezia", "Bologna", 248.41);
+					dcl s2: Section := new Section("Milano", "Verona", 175.32);
+					dcl s3: Section := new Section("Lisboa", "Porto", 300);
+					dcl s4: Section := new Section("Viseu", "Porto", 120);
+					
+					dcl sec1: Sector := new Sector("Troco1", 20);
+					dcl sec2: Sector := new Sector("Troco2", 30);
+					
+					dcl sections1: seq of Section := [s1, s2];
+					dcl sections2: seq of Section := [s3, s4];
+					dcl allSections: seq of Section := sections1 ^ sections2;
+					
+					dcl p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
+					dcl cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
+					dcl c1: Car := new Car("Ford", 1271.71, 2.5, 275.5);
+					dcl t1: Team := new Team("M-Sport World Rally Team", p1, cp1, c1);
+					
+					dcl p2: Pilot := new Pilot("Sébastien", "Ogier", 34, <Male>, <Pilot>);
+					dcl cp2: Pilot := new Pilot("Julien", "Ingrassia", 38, <Male>, <CoPilot>);
+					dcl c2: Car := new Car("Volkswagen", 1200, 3.5, 250);
+					dcl t2: Team := new Team("M-Sport World Rally Team", p2, cp2, c2);
+					
+					dcl participants: set of Team := {t1, t2};
+					
+					dcl d1: Day := new Day(sections1, participants);
+					dcl d2: Day := new Day(sections2, participants);
+					
+					dcl days: seq of Day := [d1, d2];
+					
+					dcl r: Rally := new Rally(<TimeTrial>, "Italy", days, participants);
+	  			
+	  			r.mapTeamSections();
 	  		
-	  		--IO`printf("\t\t Team1 sections: %s\n", [r.teamSections(t1)]);
-	  		--IO`printf("\t\t Team2 sections: %s\n", [r.teamSections(t2)]);
-	  		
-	  		assertEqual(allSections, r.teamSections(t1));
-	  		assertEqual(allSections, r.teamSections(t2));
+		  		--IO`printf("\t\t Team1 sections: %s\n", [r.teamSections(t1)]);
+		  		--IO`printf("\t\t Team2 sections: %s\n", [r.teamSections(t2)]);
+		  		
+		  		assertEqual(allSections, r.teamSections(t1));
+		  		assertEqual(allSections, r.teamSections(t2));
+		  		
+		  	)
+		  		
 	  	);
+	  	
+	  public testAddTeamRecord: () ==> ()
+  		testAddTeamRecord() == (
+  		
+	  		IO`println("\t\t test add team record");
+	  		
+	  		(
+	  			dcl p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
+					dcl cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
+					dcl c1: Car := new Car("Ford", 1271.71, 2.5, 275.5);
+					dcl t1: Team := new Team("M-Sport World Rally Team", p1, cp1, c1);
+					
+					dcl p2: Pilot := new Pilot("Sébastien", "Ogier", 34, <Male>, <Pilot>);
+					dcl cp2: Pilot := new Pilot("Julien", "Ingrassia", 38, <Male>, <CoPilot>);
+					dcl c2: Car := new Car("Volkswagen", 1200, 3.5, 250);
+					dcl t2: Team := new Team("M-Sport World Rally Team", p2, cp2, c2);
+					
+					dcl s1: Section := new Section("Venezia", "Bologna", 248.41);
+					
+					dcl seqSections: seq of Section := [s1];
+	  			
+	  			dcl participants: set of Team := {t1, t2};
+	  			
+					dcl d1: Day := new Day(seqSections, participants);
+				
+					dcl days: seq of Day := [d1];
+		
+					dcl r: Rally := new Rally(<TimeTrial>, "Italy", days, participants);
+					
+					r.addTeamRecord(t1, 500); 
+					r.addTeamRecord(t2, 625);	
+					
+					IO`printf("\t\t Rally Stats: %s\n", [r.teamsStats]);
+						
+					assertTrue(t1 in set dom r.teamsStats);
+					assertEqual(500, r.teamsStats(t1).time);
+					assertEqual(248.41, r.teamsStats(t1).distance);
+					assertEqual(248.41/500, r.teamsStats(t1).averageSpeed);
+					
+					assertTrue(t2 in set dom r.teamsStats);
+					assertEqual(625, r.teamsStats(t2).time);
+					assertEqual(248.41, r.teamsStats(t2).distance);
+					assertEqual(248.41/625, r.teamsStats(t2).averageSpeed);
+	  		
+	  		)
+		
+		  );
 
   	public testAll: () ==> ()
 	  	testAll() == (
 	    	IO`println("\t rally tests");
 	    	testConstructor();
 	    	testMapTeamSections();
+	    	testAddTeamRecord();
 	  	);
 
 end TestRally
