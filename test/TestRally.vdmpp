@@ -238,21 +238,25 @@ class TestRally is subclass of TestSuite
 		  		dcl p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
 					dcl cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
 					dcl c1: Car := new Car("Citroen DS3", 1200, 3.1, 250);
+					dcl s1: Sponsor := new Sponsor("Michelin");
 					dcl t1: Team := new Team("M-Sport World Rally Team", p1, cp1, c1);
 					
 					dcl p2: Pilot := new Pilot("Colin", "McRae", 34, <Male>, <Pilot>);
 					dcl cp2: Pilot := new Pilot("Nicky", "Grist", 38, <Male>, <CoPilot>);
 					dcl c2: Car := new Car("Subaru Impreza", 1378, 2.9, 280);
+					dcl s2: Sponsor := new Sponsor("RedBull");
 					dcl t2: Team := new Team("Subaru World", p2, cp2, c2);
 					
 					dcl p3: Pilot := new Pilot("Armindo", "Araújo", 40, <Male>, <Pilot>);
 					dcl cp3: Pilot := new Pilot("Miguel", "Ramalho", 42, <Male>, <CoPilot>);
 					dcl c3: Car := new Car("Mini Countryman", 1305, 3.4, 250);
+					dcl s3: Sponsor := new Sponsor("Marlboro");
 					dcl t3: Team := new Team("MotorSport Italia", p3, cp3, c3);
 					
 					dcl p4: Pilot := new Pilot("Carlos", "Sainz", 41, <Male>, <Pilot>);
 					dcl cp4: Pilot := new Pilot("Luis", "Moya", 38, <Male>, <CoPilot>);
 					dcl c4: Car := new Car("Toyota Corolla", 1345, 3.2, 270);
+					dcl s4: Sponsor := new Sponsor("McDonalds");
 					dcl t4: Team := new Team("Corolla World", p4, cp4, c4);
 					
 					dcl participants: set of Team := {t1, t2, t3, t4};
@@ -272,6 +276,12 @@ class TestRally is subclass of TestSuite
 					dcl startDate : Rally`Date := mk_Rally`Date(2017, 10, 23);
 					dcl endDate : Rally`Date := mk_Rally`Date(2017, 10, 25);
 					dcl rally: Rally := new Rally(<TimeTrial>, "Portugal", days, participants, startDate, endDate);
+					
+				--Add sponsors to Teams
+					t1.addSponsor(s1);
+					t2.addSponsor(s2);
+					t3.addSponsor(s3);
+					t4.addSponsor(s4);
 					
 				--Add Sectors to Sections
 					day1Section1.addSector(day1Section1Sector1);
