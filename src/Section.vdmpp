@@ -1,24 +1,70 @@
+/**
+ * This class represents a Section and all it's relevant attributes
+ */
 class Section
 
 	values
+		/**
+			* Helper value that equals zero
+			*/
 		public INIT_AT_ZERO = 0;
 
 	types
+		/**
+			* String, sequence of characters
+			*/
 		public String = seq1 of char;
+		/**
+			* RealNumber, any number from minus infinity to plus infinity
+			*/
 		public RealNumber = real;
+		/**
+			* SectionSectors, set of sectors of this section
+			*/
 		public SectionSectors = set of Sector;
+		/**
+			* SectionPointsOfInterest, set of points of interest of this section
+			*/
 		public SectionPointsOfInterest = set of PointOfInterest;
+		/**
+			* MapTeamStats, maping between a team and the stats for this section
+			*/
 		public MapTeamsStats = map Team to Stat;
 
 	instance variables
+		/**
+			* name of the starting location
+			*/
 		public startLocation: String;
+		/**
+			* name of the ending location
+			*/
 		public endLocation: String;
+		/**
+			* distance of the section
+			*/
 		public distance: RealNumber := INIT_AT_ZERO;
+		/**
+			* sectors of the section
+			*/
 		public sectors: SectionSectors := {};
+		/**
+			* points of interest of the section
+			*/
 		public pointsOfInterest: SectionPointsOfInterest := {};
+		/**
+			* teams and stats
+			*/
 		public teamsStats: MapTeamsStats := {|->};
 		
 	operations
+				/**
+     * Section Constructor
+     *
+     * @param sL start location
+     * @param eL end location
+     * @param d distance
+     */
 		public Section: String * String * RealNumber ==> Section
 			Section(sL, eL, d) == (
 				startLocation := sL;
@@ -29,7 +75,11 @@ class Section
 		pre d > 0
 		post self.startLocation = sL and self.endLocation = eL and self.distance = d;
 	 	
-	 	--Sectors
+	 	/**
+     * Adds a sector to the section
+     *
+     * @param s sector to add
+     */
 	 	public addSector: Sector ==> () 
 	 		addSector(s) == (
 				sectors := sectors union {s};
@@ -37,6 +87,11 @@ class Section
 		pre s not in set sectors and sumSectorsDistances(sectors)+s.distance <= distance
 		post s in set sectors;
 		
+		/**
+     * Removes a sector from the section
+     *
+     * @param s sector to remove
+     */
 		public removeSector: Sector ==> ()
 			removeSector(s) == (
 	 			sectors := sectors \ {s};
@@ -51,7 +106,11 @@ class Section
 	 		)
 	 	post distance >= 0;
 	 	
-	 	--POI
+	 	/**
+     * Adds a point of interest to the section
+     *
+     * @param p point of interest to add
+     */
 		public addPointOfInterest: PointOfInterest ==> ()
 			addPointOfInterest(p) == (
 				pointsOfInterest := pointsOfInterest union {p};
@@ -59,6 +118,11 @@ class Section
 		pre p.kilometre < distance and p not in set pointsOfInterest 
 		post p in set pointsOfInterest;
 		
+		/**
+     * Removes a point of interest from the section
+     *
+     * @param p point of interest to remove
+     */
 		public removePointOfInterest: PointOfInterest ==> ()
 			removePointOfInterest(p) == (
 	 			pointsOfInterest := pointsOfInterest \ {p};
@@ -66,7 +130,12 @@ class Section
 	 	pre p in set pointsOfInterest
 	 	post p not in set pointsOfInterest;
 	 	
-	 	--Stats
+	 	/**
+     * Stores a stat of a team
+     *
+     * @param team team which the stat belongs to
+     * @param time time that the team took to complete
+     */
 	 	public addTeamRecord: Team * RealNumber ==> ()
 	 		addTeamRecord(team, time) == (
 				teamsStats := teamsStats munion {team |-> new Stat(time, distance)};
@@ -74,7 +143,9 @@ class Section
 		pre time > 0
 		post team in set dom teamsStats;
 		
-		--Updates teams stats through all sectors
+		/**
+     * Updates teams stats through all sectors
+     */
 		public getTeamsRecords: () ==> ()
 			getTeamsRecords() == (
 				for all s in set sectors do
