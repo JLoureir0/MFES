@@ -13,6 +13,9 @@ class Rally
 		public RallyWinner = Team;
 		public RallyTeamSections = map Team to seq of Section;
 		public MapTeamsStats = map Team to Stat;
+		public Date ::	year : nat1
+										month: nat1
+										day: nat1;
 
 	instance variables
 	
@@ -24,20 +27,24 @@ class Rally
 		public winner: RallyWinner;
 		public teamSections: RallyTeamSections := {|->};
 		public teamsStats: MapTeamsStats := {|->};
+		public startDate: Date;
+		public endDate: Date;
 		
 	operations
 
-		public Rally: RallyCategory * String * RallyDays * RallyParticipants ==> Rally 
-			Rally(c, l, d, p) == (
+		public Rally: RallyCategory * String * RallyDays * RallyParticipants * Date * Date ==> Rally 
+			Rally(c, l, d, p, sd, ed) == (
 				category := c;
 				local := l;
 				days := d;
 				participants := p;
+				startDate := sd;
+				endDate := ed;
 				sumDaysDistances();
 				return self;
 			)
-		pre len d > 0 and card p > 1
-		post self.days = d and self.participants = p;
+		pre len d > 0 and card p > 1 and ed.day > sd.day
+		post self.category = c and self.local = l and self.days = d and self.participants = p and self.startDate = sd and self.endDate = ed ;
 		
 		public assignWinner: Team ==> ()
 			assignWinner(w) == (

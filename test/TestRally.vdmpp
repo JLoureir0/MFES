@@ -25,11 +25,15 @@ class TestRally is subclass of TestSuite
 					
 					dcl participants: set of Team := {t1, t2};
 					
-					dcl d1: Day := new Day(sections, participants);
+					dcl dayDate : Day`Date := mk_Day`Date(2017, 10, 23);
+					dcl startDate : Rally`Date := mk_Rally`Date(2017, 10, 23);
+					dcl endDate : Rally`Date := mk_Rally`Date(2017, 10, 24);
+					
+					dcl d1: Day := new Day(sections, participants, dayDate);
 					
 					dcl days: seq of Day := [d1];
 					
-					dcl r: Rally := new Rally(<TimeTrial>, "Italy", days, participants);
+					dcl r: Rally := new Rally(<TimeTrial>, "Italy", days, participants, startDate, endDate);
 					
 					assertEqual(<TimeTrial>, r.category);
 		  		assertEqual("Italy", r.local);
@@ -67,12 +71,17 @@ class TestRally is subclass of TestSuite
 					
 					dcl participants: set of Team := {t1, t2};
 					
-					dcl d1: Day := new Day(sections1, participants);
-					dcl d2: Day := new Day(sections2, participants);
+					dcl day1Date : Day`Date := mk_Day`Date(2017, 10, 23);
+					dcl day2Date : Day`Date := mk_Day`Date(2017, 10, 24);
+					dcl startDate : Rally`Date := mk_Rally`Date(2017, 10, 23);
+					dcl endDate : Rally`Date := mk_Rally`Date(2017, 10, 24);
+					
+					dcl d1: Day := new Day(sections1, participants, day1Date);
+					dcl d2: Day := new Day(sections2, participants, day2Date);
 					
 					dcl days: seq of Day := [d1, d2];
 					
-					dcl r: Rally := new Rally(<TimeTrial>, "Italy", days, participants);
+					dcl r: Rally := new Rally(<TimeTrial>, "Italy", days, participants, startDate, endDate);
 	  			
 	  			r.mapTeamSections();
 	  		
@@ -107,11 +116,15 @@ class TestRally is subclass of TestSuite
 	  			
 	  			dcl participants: set of Team := {t1, t2};
 	  			
-					dcl d1: Day := new Day(seqSections, participants);
+	  			dcl dayDate : Day`Date := mk_Day`Date(2017, 10, 23);
+					dcl startDate : Rally`Date := mk_Rally`Date(2017, 10, 23);
+					dcl endDate : Rally`Date := mk_Rally`Date(2017, 10, 24);
+	  			
+					dcl d1: Day := new Day(seqSections, participants, dayDate);
 				
 					dcl days: seq of Day := [d1];
 		
-					dcl r: Rally := new Rally(<TimeTrial>, "Italy", days, participants);
+					dcl r: Rally := new Rally(<TimeTrial>, "Italy", days, participants, startDate, endDate);
 					
 					r.addTeamRecord(t1, 500); 
 					r.addTeamRecord(t2, 625);	
@@ -154,11 +167,15 @@ class TestRally is subclass of TestSuite
 	  			
 	  			dcl participants: set of Team := {t1, t2};
 	  			
-					dcl d1: Day := new Day(seqSections, participants);
+					dcl dayDate : Day`Date := mk_Day`Date(2017, 10, 23);
+					dcl startDate : Rally`Date := mk_Rally`Date(2017, 10, 23);
+					dcl endDate : Rally`Date := mk_Rally`Date(2017, 10, 24);
+	  			
+					dcl d1: Day := new Day(seqSections, participants, dayDate);
 				
 					dcl days: seq of Day := [d1];
 		
-					dcl r: Rally := new Rally(<TimeTrial>, "Italy", days, participants);
+					dcl r: Rally := new Rally(<TimeTrial>, "Italy", days, participants, startDate, endDate);
 					
 					d1.addTeamRecord(t1, 500); 
 					d1.addTeamRecord(t2, 625);	
@@ -241,14 +258,20 @@ class TestRally is subclass of TestSuite
 					dcl participants: set of Team := {t1, t2, t3, t4};
 					
 				--Days
-					dcl day1: Day := new Day(day1Sections, participants);
-		  		dcl day2: Day := new Day(day2Sections, participants);
-		  		dcl day3: Day := new Day(day3Sections, participants);
+					dcl day1Date : Day`Date := mk_Day`Date(2017, 10, 23);
+					dcl day2Date : Day`Date := mk_Day`Date(2017, 10, 24);
+					dcl day3Date : Day`Date := mk_Day`Date(2017, 10, 25);
+					
+					dcl day1: Day := new Day(day1Sections, participants, day1Date);
+		  		dcl day2: Day := new Day(day2Sections, participants, day2Date);
+		  		dcl day3: Day := new Day(day3Sections, participants, day3Date);
 				
 					dcl days: seq of Day := [day1, day2, day3];
 					
 				--Rally
-					dcl rally: Rally := new Rally(<TimeTrial>, "Portugal", days, participants);
+					dcl startDate : Rally`Date := mk_Rally`Date(2017, 10, 23);
+					dcl endDate : Rally`Date := mk_Rally`Date(2017, 10, 25);
+					dcl rally: Rally := new Rally(<TimeTrial>, "Portugal", days, participants, startDate, endDate);
 					
 				--Add Sectors to Sections
 					day1Section1.addSector(day1Section1Sector1);
@@ -293,7 +316,7 @@ class TestRally is subclass of TestSuite
 					day1Section2Sector2.addTeamRecord(t4, 246);
 		  		
 		  		rally.getTeamsRecords();
-		  		IO`printf("\t\t rally stats: %s \n", [rally.teamsStats]);
+		  		--IO`printf("\t\t rally stats: %s \n", [rally.teamsStats]);
 		  	)
 		  	
 		  );

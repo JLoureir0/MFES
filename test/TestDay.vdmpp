@@ -1,48 +1,75 @@
 class TestDay is subclass of TestSuite
-	
-	instance variables
-		s1: Section := new Section("Venezia", "Bologna", 248.41);
-		s2: Section := new Section("Milano", "Verona", 175.32);
-		
-		sections: seq of Section := [s1, s2];
-		
-		p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
-		cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
-		c1: Car := new Car("Ford", 1271.71, 2.5, 275.5);
-		t1: Team := new Team("M-Sport World Rally Team", p1, cp1, c1);
-		
-		p2: Pilot := new Pilot("Sébastien", "Ogier", 34, <Male>, <Pilot>);
-		cp2: Pilot := new Pilot("Julien", "Ingrassia", 38, <Male>, <CoPilot>);
-		c2: Car := new Car("Volkswagen", 1200, 3.5, 250);
-		t2: Team := new Team("M-Sport World Rally Team", p2, cp2, c2);
-		
-		teams: set of Team := {t1, t2};
-		
-		d: Day := new Day(sections, teams);
 
 	operations
   	public testConstructor: () ==> ()
 	  	testConstructor() == (
+	  		
 	  		IO`println("\t\t test constructor");
 	  		
-	  		assertEqual("Venezia", d.sections(1).startLocation);
-	  		assertEqual("Bologna", d.sections(1).endLocation);
-	    	assertTrue(t1 in set d.teams);
-	    	assertTrue(t2 in set d.teams);
+	  		(
+	  			dcl s1: Section := new Section("Venezia", "Bologna", 248.41);
+					dcl s2: Section := new Section("Milano", "Verona", 175.32);
+					
+					dcl sections: seq of Section := [s1, s2];
+					
+					dcl p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
+					dcl cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
+					dcl c1: Car := new Car("Ford", 1271.71, 2.5, 275.5);
+					dcl t1: Team := new Team("M-Sport World Rally Team", p1, cp1, c1);
+					
+					dcl p2: Pilot := new Pilot("Sébastien", "Ogier", 34, <Male>, <Pilot>);
+					dcl cp2: Pilot := new Pilot("Julien", "Ingrassia", 38, <Male>, <CoPilot>);
+					dcl c2: Car := new Car("Volkswagen", 1200, 3.5, 250);
+					dcl t2: Team := new Team("M-Sport World Rally Team", p2, cp2, c2);
+					
+					dcl teams: set of Team := {t1, t2};
+					
+					dcl date : Day`Date := mk_Day`Date(2017, 10, 23);
+					
+					dcl d: Day := new Day(sections, teams, date);
+					
+		  		assertEqual("Venezia", d.sections(1).startLocation);
+		  		assertEqual("Bologna", d.sections(1).endLocation);
+		    	assertTrue(t1 in set d.teams);
+		    	assertTrue(t2 in set d.teams);
+	    	)
   		);
   	
   	public testAddTeamRecord: () ==> ()
   		testAddTeamRecord() == (
   		
 	  		IO`println("\t\t test add team record");
-		  	
-		 		d.addTeamRecord(t1, 500);
-		 		d.addTeamRecord(t2, 600);
+	  		
+	  		(
+	  			dcl s1: Section := new Section("Venezia", "Bologna", 248.41);
+					dcl s2: Section := new Section("Milano", "Verona", 175.32);
 					
-				--IO`printf("\t\t Day Stats: %s\n", [d.teamsStats]);
+					dcl sections: seq of Section := [s1, s2];
 					
-				assertTrue(t1 in set dom d.teamsStats);
-				assertEqual(423.73/500, d.teamsStats(t1).averageSpeed);
+					dcl p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
+					dcl cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
+					dcl c1: Car := new Car("Ford", 1271.71, 2.5, 275.5);
+					dcl t1: Team := new Team("M-Sport World Rally Team", p1, cp1, c1);
+					
+					dcl p2: Pilot := new Pilot("Sébastien", "Ogier", 34, <Male>, <Pilot>);
+					dcl cp2: Pilot := new Pilot("Julien", "Ingrassia", 38, <Male>, <CoPilot>);
+					dcl c2: Car := new Car("Volkswagen", 1200, 3.5, 250);
+					dcl t2: Team := new Team("M-Sport World Rally Team", p2, cp2, c2);
+					
+					dcl teams: set of Team := {t1, t2};
+					
+					dcl date : Day`Date := mk_Day`Date(2017, 10, 23);
+					
+					dcl d: Day := new Day(sections, teams, date);
+		  		
+			 		d.addTeamRecord(t1, 500);
+			 		d.addTeamRecord(t2, 600);
+						
+					--IO`printf("\t\t Day Stats: %s\n", [d.teamsStats]);
+						
+					assertTrue(t1 in set dom d.teamsStats);
+					assertEqual(423.73/500, d.teamsStats(t1).averageSpeed);
+				)
 		
 		  );
 	  
@@ -52,19 +79,26 @@ class TestDay is subclass of TestSuite
 		  	IO`println("\t\t test get teams records");
 		  	
 		  	(
-		  		dcl s1: Section := new Section("Paris", "Nantes", 300.8);
-		  		dcl s2: Section := new Section("Lyon", "Marselha", 518);
-		  		
-		  		dcl sectns : seq of Section := [s1, s2];
+		  		dcl s1: Section := new Section("Venezia", "Bologna", 248.41);
+					dcl s2: Section := new Section("Milano", "Verona", 175.32);
+					
+					dcl sections: seq of Section := [s1, s2];
+		  	 
+		  	 	dcl p1: Pilot := new Pilot("Sébastien", "Loeb", 43, <Male>, <Pilot>);
+					dcl cp1: Pilot := new Pilot("Daniel", "Elena", 45, <Male>, <CoPilot>);
+					dcl c1: Car := new Car("Ford", 1271.71, 2.5, 275.5);
+					dcl t1: Team := new Team("M-Sport World Rally Team", p1, cp1, c1);
 		  	 
 		  		dcl p3: Pilot := new Pilot("Colin", "McRae", 41, <Male>, <Pilot>);
 					dcl cp3: Pilot := new Pilot("Nicky", "Grist", 45, <Male>, <CoPilot>);
 					dcl c3: Car := new Car("Subaru", 1271.71, 2.5, 275.5);
 					dcl t3: Team := new Team("Kronos", p3, cp3, c3);
 					
-					dcl teamz: set of Team := {t1, t3};
+					dcl teams: set of Team := {t1, t3};
 					
-					dcl d: Day := new Day(sectns, teamz);
+					dcl date : Day`Date := mk_Day`Date(2017, 10, 23);
+					
+					dcl d: Day := new Day(sections, teams, date);
 					
 					s1.addTeamRecord(t3, 123);
 					s1.addTeamRecord(t1, 128);
@@ -76,7 +110,7 @@ class TestDay is subclass of TestSuite
 					--IO`printf("\t\t Day Stats: %s\n", [d.teamsStats]);
 					
 					assertTrue(t1 in set dom d.teamsStats);
-					assertEqual(818.8/333, d.teamsStats(t3).averageSpeed);
+					assertEqual(423.73/333, d.teamsStats(t3).averageSpeed);
 		  	)
 		  	
 		  );
