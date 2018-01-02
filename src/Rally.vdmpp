@@ -2,7 +2,6 @@ class Rally
 
 	values
 		public INIT_AT_ZERO = 0;
-		public TIME_PENALTY = 50;
 
 	types
 		public String = seq1 of char;
@@ -90,6 +89,28 @@ class Rally
 							else teamsStats := teamsStats munion {t |-> d.teamsStats(t)};
 							)
 					)
+			);
+			
+			public calculateWinner: () ==> ()
+			calculateWinner() == (
+				(
+					--other way to do this
+					dcl bestTime: RealNumber := 9999999;
+					
+					for all t in set dom teamsStats do
+						(
+							--ensures that the winner ran all the competition
+							if(floor teamsStats(t).distance = floor totalDistance) then
+							(
+								if(teamsStats(t).time < bestTime) then
+								(
+									bestTime := teamsStats(t).time;
+									assignWinner(t);
+								)
+							)
+								
+						)
+				)
 			);
 	
 end Rally

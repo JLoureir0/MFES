@@ -314,9 +314,56 @@ class TestRally is subclass of TestSuite
 					day1Section2Sector2.addTeamRecord(t2, 237);
 					day1Section2Sector2.addTeamRecord(t3, 239);
 					day1Section2Sector2.addTeamRecord(t4, 246);
+					
+					day2Section1Sector1.addTeamRecord(t1, 646);
+					day2Section1Sector1.addTeamRecord(t2, 643);
+					day2Section1Sector1.addTeamRecord(t3, 637);
+					day2Section1Sector1.addTeamRecord(t4, 640);
+					
+					day2Section1Sector2.addTeamRecord(t1, 812);
+					day2Section1Sector2.addTeamRecord(t2, 815);
+					day2Section1Sector2.addTeamRecord(t3, 813);
+					day2Section1Sector2.addTeamRecord(t4, 819);
+					
+					day2Section1Sector3.addTeamRecord(t1, 1473);
+					day2Section1Sector3.addTeamRecord(t2, 1484);
+					day2Section1Sector3.addTeamRecord(t3, 1479);
+					day2Section1Sector3.addTeamRecord(t4, 1476);
+					
+					day3Section1Sector1.addTeamRecord(t1, 399);
+					day3Section1Sector1.addTeamRecord(t2, 395);
+					day3Section1Sector1.addTeamRecord(t3, 390);
+					day3Section1Sector1.addTeamRecord(t4, 402);
+					
+					day3Section1Sector2.addTeamRecord(t1, 489);
+					day3Section1Sector2.addTeamRecord(t2, 492);
+					day3Section1Sector2.addTeamRecord(t3, 477);
+					day3Section1Sector2.addTeamRecord(t4, 485);
+					
+					day3Section2Sector1.addTeamRecord(t1, 351);
+					day3Section2Sector1.addTeamRecord(t2, 347);
+					day3Section2Sector1.addTeamRecord(t3, 342);
+					day3Section2Sector1.addTeamRecord(t4, 356);
+					
+					day3Section2Sector2.addTeamRecord(t1, 404);
+					day3Section2Sector2.addTeamRecord(t2, 398);
+					day3Section2Sector2.addTeamRecord(t3, 400);
+					day3Section2Sector2.addTeamRecord(t4, 402);
 		  		
 		  		rally.getTeamsRecords();
-		  		--IO`printf("\t\t rally stats: %s \n", [rally.teamsStats]);
+		  		
+		  		IO`println("\t\t rally stats:");
+		  		
+		  		for all t in set dom rally.teamsStats do
+		  		(
+		  			IO`printf("\t\t %s", [t.name]);
+		  			IO`printf(" %s\n", [rally.teamsStats(t)]);
+		  		);
+		  		
+		  		rally.calculateWinner();
+		  		
+		  		IO`printf("\t\t Congratulations Team %s! You won the Rally de Portugal!\n", [rally.winner.name]);
+		  			
 		  	)
 		  	
 		  );
