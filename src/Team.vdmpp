@@ -1,24 +1,75 @@
+/**
+ * This class represents a Team that is composed by a name, a car,
+ * a pilot, a co-pilot and a set of sponsors
+ */
 class Team
 
 	values
+		/**
+			* Helper value that equals zero
+			*/ 
 		public INIT_AT_ZERO = 0;
 
 	types
+		/**
+			* String, sequence of characters
+			*/
 		public String = seq1 of char;
+		/**
+			* RealNumber, any number from minus infinity to plus infinity
+			*/
 		public RealNumber = real;
+		/**
+			* TODO: is this right, type ?
+			*/
 		public PilotType = Pilot;
+		/**
+			* TeamCar, a Car
+			*/
 		public TeamCar = Car;
+		/**
+			* TeamSponsors, a set of Sponsors
+			*/
 		public TeamSponsors = set of Sponsor;
 		
 	instance variables
+		/**
+			* name of the team
+			*/
 		public name: String;
+		/**
+			* pilot of the team
+			*/
 		public pilot: PilotType;
+		/**
+			* co-pilot of the team
+			*/
 		public coPilot: PilotType;
+		/**
+			* car of the team
+			*/
 		public car: TeamCar;
+		/**
+			* sponsors of the team
+			*/
 		public sponsors: TeamSponsors := {};
+		/**
+			* TODO: totaltime not needed here ?
+			*/
 		public totalTime: RealNumber := INIT_AT_ZERO;
 	
 	operations
+		/**
+     * Team Constructor
+     *
+     * @remark pilot must be a <Pilot> and the
+     *         co-pilot must be a <CoPilot>
+     *
+     * @param n name
+     * @param p pilot
+     * @param cp co-pilot
+     * @param c car
+     */
 		public Team: String * PilotType * PilotType * TeamCar ==> Team
 			Team(n, p, cp, c) == (
 				name := n;
@@ -30,6 +81,11 @@ class Team
 		pre p.type = <Pilot> and cp.type = <CoPilot>
 		post self.name = n and self.pilot = p and self.coPilot = cp and self.car = c;
 		
+		/**
+     * Adds a sponsor to the Team
+     *
+     * @param sponsor sponsor to add
+     */
 		public addSponsor: Sponsor ==> ()
 			addSponsor(sponsor) == (
 	 			sponsors := sponsors union {sponsor};
@@ -37,6 +93,11 @@ class Team
 	 	pre sponsor not in set sponsors
 	 	post sponsor in set sponsors;
 	 	
+	 	/**
+     * Removes a sponsor from the Team
+     *
+     * @param sponsor sponsor to remove
+     */
 	 	public removeSponsor: Sponsor ==> ()
 	 		removeSponsor(sponsor) == (
 	 			sponsors := sponsors \ {sponsor};

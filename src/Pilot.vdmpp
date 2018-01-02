@@ -1,19 +1,61 @@
+/**
+ * This class represents a Pilot and all it's relevant attributes
+ */
 class Pilot
 
 	types
+		/**
+			* String, sequence of characters
+			*/
 		public String = seq1 of char;
+		/**
+			* PilotAge, natural number
+			*/
 		public PilotAge = nat1;
+		/**
+			* PilotGender, either <Male> or <Female>
+			*/
 		public PilotGender = Type`Gender;
+		/**
+			* PilotType, either <Pilot> or <CoPilot>
+			*/
 		public PilotType = Type`PilotType;
 
 	instance variables
+		/**
+			* first name of the pilot
+			*/
 		public firstName: String;
+		/**
+			* last name of the pilot
+			*/
 		public lastName: String;
+		/**
+			* age of the pilot
+			*/
 		public age: PilotAge;
+		/**
+			* gender of the pilot
+			*/
 		public gender: PilotGender;
+		/**
+			* pilot's type
+			*/
 		public type: PilotType;
 	
 	operations
+		/**
+     * Pilot Constructor
+     *
+     * @remark driver must be older than 30 and younger than 60
+     *         years old.
+     *
+     * @param fName first name
+     * @param lName last name
+     * @param a age
+     * @param g gender
+     * @param t type
+     */
 		public Pilot: String * String * PilotAge * PilotGender * PilotType ==> Pilot
 			Pilot(fName, lName, a, g, t) == (
 				firstName := fName;

@@ -1,16 +1,43 @@
+/**
+ * This class represents a Car and all it's relevant attributes
+ */
 class Sector
 		
 	types
+		/**
+			* String, sequence of characters
+			*/
 		public String = seq1 of char;
+		/**
+			* RealNumber, any number from minus infinity to plus infinity
+			*/
 		public RealNumber = real;
+		/**
+			* MapTeamsStats, a map between Team and Stat
+			*/
 		public MapTeamsStats = map Team to Stat;
  
 	instance variables
+		/**
+			* name of the sector
+			*/
 		public name: String;
+		/**
+			* distance that the sector covers
+			*/
 		public distance: RealNumber;
+		/**
+			* teams that did the sector and it's stats
+			*/
 		public teamsStats: MapTeamsStats := {|->};
 
 	operations
+		/**
+     * Sector Constructor
+     *
+     * @param n name
+     * @param d distance
+     */
 		public Sector: String * RealNumber ==> Sector
 			Sector(n, d) == (
 				name := n;
@@ -20,6 +47,12 @@ class Sector
 		pre d > 0
 		post self.name = n and self.distance = d;
 		
+		/**
+     * Stores the stats that a Team did in this sector
+     *
+     * @param team team
+     * @param time time
+     */
 		public addTeamRecord: Team * RealNumber ==> ()
 			addTeamRecord(team, time) == (
 				teamsStats := teamsStats munion {team |-> new Stat(time, distance)};

@@ -1,20 +1,59 @@
+/**
+ * This class represents a Car and all it's relevant attributes
+ */
 class Car
 
 	values
+		/**
+			* All the cars permitted to enter the rally have the same HorsePower
+			*/ 
 		public HORSEPOWER = 380;
 
 	types
+		/**
+			* String, sequence of characters
+			*/
 		public String = seq1 of char;
+		/**
+			* RealNumber, any number from minus infinity to plus infinity
+			*/
 		public RealNumber = real;
 
 	instance variables
+		/**
+			* The manufacter of the car
+			*/
 		public manufacturer: String;
+		/**
+			* The weight of the car in kg
+			*/
 		public weight: RealNumber;
+		/**
+			* Seconds that the car needs to go from 0 to 100 km/h
+			*/
 		public zeroToOneHundred: RealNumber;
+		/**
+			* Top speed of the car in km/h
+			*/
 		public topSpeed: RealNumber;
+		/**
+			* Horsepower of the car
+			*/
 		public horsePower: RealNumber := HORSEPOWER;
 	
 	operations
+		/**
+     * Car Constructor
+     *
+     * @remark weight must be above 1190 kg, the top speed must be
+     *         greater than 200 km/h and the car must go from 0 to
+     *         100 km/h in less than 4 seconds.
+     *
+     * @param m manufacter
+     * @param w weight
+     * @param ztoh seconds from 0 to 100 km/h
+     * @param ts car's top speed
+     */
 		public Car: String * RealNumber * RealNumber * RealNumber ==> Car 
 			Car(m, w, ztoh, ts) == (
 				manufacturer := m;

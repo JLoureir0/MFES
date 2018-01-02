@@ -1,16 +1,46 @@
+/**
+ * This class represents a Point of Interest and all it's relevant attributes
+ */
 class PointOfInterest
 	
 	types
+		/**
+			* String, sequence of characters
+			*/
 		public String = seq1 of char;
+		/**
+			* RealNumber, any number from minus infinity to plus infinity
+			*/
 		public RealNumber = real;
+		/**
+			* POIType, type of the point of interest it can be one of the
+			* following: <TimeControl>, <PassageControl>, <Grouping>, <Service>,
+			* <Refuel>, <Holding>, <Locality>, <Special> and <TimeTrial>
+			*/
 		public POIType = Type`PointOfInterestType;
 
 	instance variables
+		/**
+			* name of the point of interest
+			*/
 		public name: String;
+		/**
+			* the kilometre that the point of interest is at
+			*/
 		public kilometre: RealNumber;
+		/**
+			* the type of point of interest
+			*/
 		public type: POIType;
 	
 	operations
+		/**
+     * PointOfInterest Constructor
+     *
+     * @param n name
+     * @param k kilometre
+     * @param t point of interest's type
+     */
 		public PointOfInterest: String * RealNumber * POIType ==> PointOfInterest 
 			PointOfInterest(n, k, t) == (
 				name := n;

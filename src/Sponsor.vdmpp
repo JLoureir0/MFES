@@ -1,12 +1,29 @@
+/**
+ * This class represents a Sponsor
+ */
 class Sponsor
 
 	types
+		/**
+			* String, sequence of characters
+			*/
 		public String = seq1 of char;
 
 	instance variables
+		/**
+			* Name of the sponsor
+			*/
 		public name: String;
 	
 	operations
+		/**
+     * Sponsor Constructor
+     *
+     * @remark the name of a sponsor has to be greater
+     *         than two letters
+     *
+     * @param n sponsors's name
+     */
 		public Sponsor: String ==> Sponsor
 			Sponsor(n) == (
 				name := n;
