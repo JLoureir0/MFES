@@ -20,10 +20,6 @@ class Team
 			*/
 		public RealNumber = real;
 		/**
-			* TODO: is this right, type ?
-			*/
-		public PilotType = Pilot;
-		/**
 			* TeamCar, a Car
 			*/
 		public TeamCar = Car;
@@ -40,11 +36,11 @@ class Team
 		/**
 			* pilot of the team
 			*/
-		public pilot: PilotType;
+		public pilot: Pilot;
 		/**
 			* co-pilot of the team
 			*/
-		public coPilot: PilotType;
+		public coPilot: Pilot;
 		/**
 			* car of the team
 			*/
@@ -70,7 +66,7 @@ class Team
      * @param cp co-pilot
      * @param c car
      */
-		public Team: String * PilotType * PilotType * TeamCar ==> Team
+		public Team: String * Pilot * Pilot * TeamCar ==> Team
 			Team(n, p, cp, c) == (
 				name := n;
 				pilot := p;
@@ -104,20 +100,5 @@ class Team
 	 		)
 	 	pre sponsor in set sponsors
 	 	post sponsor not in set sponsors;
-	 	
-	 	public addTime: RealNumber ==> ()
-	 		addTime(t) == (
-	 			totalTime := totalTime + t;
-	 		)
-	 	pre totalTime >= 0 and t > 0
-	 	post totalTime = totalTime + t;
-	 	
-	 	--in case a team misses a day of competition
-	 	public penalty: () ==> ()
-	 		penalty() == (
-	 			addTime(Rally`TIME_PENALTY);
-	 		)
-	 	pre totalTime >= 0
-	 	post totalTime = totalTime + Rally`TIME_PENALTY;
 	
 end Team
