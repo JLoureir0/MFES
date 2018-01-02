@@ -1,14 +1,38 @@
+/**
+ * This class represents a Stat that contains the time, distance and
+ * average speed
+ */
 class Stat
 
 	types
+		/**
+			* RealNumber, any number from minus infinity to plus infinity
+			*/
 		public RealNumber = real;
 		
 	instance variables
+		/**
+			* time it took to complete a certain sector/section/day
+			*/
 		public time: RealNumber;
+		/**
+			* distance of a certain sector/section/day
+			*/
 		public distance: RealNumber;
+		/**
+			* average speed in a certain sector/section/day
+			*/
 		public averageSpeed: RealNumber;
 	
 	operations
+		/**
+	   * Stat Constructor
+	   *
+	   * @remark time and distance must be greater than 0
+	   *
+	   * @param t time
+	   * @param d distance
+	   */
 		public Stat: RealNumber * RealNumber ==> Stat
 			Stat(t, d) == (
 				time := t;
@@ -19,6 +43,14 @@ class Stat
 		pre t > 0 and d > 0
 		post self.time = t and self.distance = d and self.averageSpeed = self.distance/self.time;
 		
+		/**
+	   * update the stat with new values
+	   *
+	   * @remark time and distance must be greater than 0
+	   *
+	   * @param t time
+	   * @param d distance
+	   */
 		public updateStat: RealNumber * RealNumber ==> ()
 			updateStat(t, d) == (
 				time := time + t;
