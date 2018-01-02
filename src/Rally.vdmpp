@@ -74,12 +74,15 @@ class Rally
 		public getTeamsRecords: () ==> ()
 			getTeamsRecords() == (
 				for d in days do
-					for all t in set dom d.teamsStats do
-						(
-						if(t in set dom teamsStats)
-							then teamsStats(t).updateStat(d.teamsStats(t).time, d.teamsStats(t).distance)
-						else teamsStats := teamsStats munion {t |-> d.teamsStats(t)};
-						)
+					(
+						d.getTeamsRecords();
+						for all t in set dom d.teamsStats do
+							(
+							if(t in set dom teamsStats)
+								then teamsStats(t).updateStat(d.teamsStats(t).time, d.teamsStats(t).distance)
+							else teamsStats := teamsStats munion {t |-> d.teamsStats(t)};
+							)
+					)
 			);
 	
 end Rally
