@@ -1,22 +1,65 @@
+/**
+ * This class represents a Rally Day and all it's relevant attributes
+ */
 class Day
 
 	values
+		/**
+			* Helper value that equals zero
+			*/
 		public INIT_AT_ZERO = 0;
 
 	types
+		/**
+			* DaySections, sequence of sections of this day
+			*/
 		public DaySections = seq1 of Section;
+		/**
+			* DayParticipants, set of teams paticipating
+			*/
 		public DayParticipants = set1 of Team;
+		/**
+			* RealNumber, any number from minus infinity to plus infinity
+			*/
 		public RealNumber = real;
+		/**
+			* MapTeamStats, maping between a team and the stats for this day
+			*/
 		public MapTeamsStats = map Team to Stat;
 
 	instance variables
+		/**
+			* sections of the day
+			*/
 		public sections: DaySections;
+		/**
+			* participants of the day
+			*/
 		public teams: DayParticipants;
+		/**
+			* teams and stats
+			*/
 		public teamsStats: MapTeamsStats := {|->};
+		/**
+			* day total distance
+			*/
 		public totalDistance : RealNumber := INIT_AT_ZERO;
+		/**
+			* date of the day
+			*/
 		public date : Type`Date;
 
 	operations
+		/**
+     * Day Constructor
+     *
+     * @remark need to be at least 1 section
+     *         and at least 2 teams
+     *
+     * @param s sections
+     * @param t teams
+     * @param d date
+     */
 		public Day: DaySections * DayParticipants * Type`Date ==> Day
 			Day(s, t, d) == (
 				sections := s;
@@ -28,6 +71,10 @@ class Day
 		pre len s > 0 and card t > 1
 		post self.sections = s and self.teams = t and self.date = d;
 		
+		/**
+     * The distance of the Day is the sum of the distances
+     * of its sections
+     */
 		public sumSectionsDistances: () ==> ()
 			sumSectionsDistances() == (
 				for s in sections do
@@ -37,6 +84,12 @@ class Day
 					);
 			);
 		
+		/**
+     * Stores a stat of a team
+     *
+     * @param team team which the stat belongs to
+     * @param time time that the team took to complete
+     */
 		public addTeamRecord: Team * RealNumber ==> () 
 			addTeamRecord(team, time) == (
 				teamsStats := teamsStats munion {team |-> new Stat(time, totalDistance)};
@@ -44,7 +97,9 @@ class Day
 		pre time > 0 and team in set teams
 		post team in set dom teamsStats;
 		
-		--Updates days stats through all sections
+		/**
+     * Updates days stats through all sections
+     */
 		public getTeamsRecords: () ==> ()
 			getTeamsRecords() == (
 				for s in sections do

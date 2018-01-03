@@ -1,33 +1,106 @@
+/**
+ * This class represents a Rally and all it's relevant attributes
+ */
 class Rally
 
 	values
+		/**
+			* Helper value that equals zero
+			*/
 		public INIT_AT_ZERO = 0;
 
 	types
+		/**
+			* String, sequence of characters
+			*/
 		public String = seq1 of char;
+		/**
+			* RealNumber, any number from minus infinity to plus infinity
+			*/
 		public RealNumber = real;
+		/**
+			* RallyCategory, it can be <TimeTrial> or <SpecialStage> or <Regulatory>
+			* or <TSD> or <Historic> or <Vintage>
+			*/
 		public RallyCategory = Type`RallyType;
+		/**
+			* RallyDays, sequence of days of this rally
+			*/
 		public RallyDays = seq1 of Day;
+		/**
+			* RallyParticipants, set of teams paticipating
+			*/
 		public RallyParticipants = set1 of Team;
+		/**
+			* RallyWinner, team that wins this rally
+			*/
 		public RallyWinner = Team;
+		/**
+			* RallyTeamSections, maping between and a set of sections
+			*/		
 		public RallyTeamSections = map Team to seq of Section;
+		/**
+			* MapTeamStats, maping between a team and the stats for this section
+			*/
 		public MapTeamsStats = map Team to Stat;
 
 	instance variables
-	
+		/**
+			* category of the rally
+			*/
 		public category: RallyCategory;
+		/**
+			* location of the rally
+			*/
 		public local: String;
+		/**
+			* days of the rally
+			*/
 		public days: RallyDays;
+		/**
+			* participants of the rally
+			*/
 		public participants: RallyParticipants;
+		/**
+			* total distance of the rally
+			*/
 		public totalDistance : RealNumber := INIT_AT_ZERO;
+		/**
+			* winner of the rally
+			*/
 		public winner: [RallyWinner] := nil;
+		/**
+			* teams and sections
+			*/
 		public teamSections: RallyTeamSections := {|->};
+		/**
+			* teams and stats
+			*/
 		public teamsStats: MapTeamsStats := {|->};
+		/**
+			* start date of the rally
+			*/
 		public startDate: Type`Date;
+		/**
+			* end date of the rally
+			*/
 		public endDate: Type`Date;
 		
 	operations
-
+		/**
+     * Rally Constructor
+     *
+     * @remark need to be at least 1 day
+     *         and at least 2 teams
+     *         end date must be later than start date
+     *
+     * @param c sections
+     * @param l teams
+     * @param d days
+     * @param p participants
+     * @param sd start date
+     * @param ed end date
+     */
 		public Rally: RallyCategory * String * RallyDays * RallyParticipants * Type`Date * Type`Date ==> Rally 
 			Rally(c, l, d, p, sd, ed) == (
 				category := c;
@@ -42,6 +115,11 @@ class Rally
 		pre len d > 0 and card p > 1 and Type`isDateLatter(ed, sd)
 		post self.category = c and self.local = l and self.days = d and self.participants = p and self.startDate = sd and self.endDate = ed ;
 		
+		/**
+     * Assign the rally winner
+     *
+     * @param w winner team
+     */
 		public assignWinner: Team ==> ()
 			assignWinner(w) == (
 				winner := w;
@@ -49,6 +127,9 @@ class Rally
 		pre w in set participants  
 		post winner = w;
 		
+		/**
+     * Mapping Teams to sections
+     */
 		public mapTeamSections: () ==> () 
 			mapTeamSections() == (
 				for d in days do
@@ -60,12 +141,22 @@ class Rally
 						)
 			);
 		
+		/**
+     * The distance of the Rally is the sum of the distances
+     * of its days
+     */
 		public sumDaysDistances: () ==> ()
 			sumDaysDistances() == (
 				for d in days do
 						totalDistance := totalDistance + d.totalDistance;
 			);
 		
+		/**
+     * Stores a stat of a team
+     *
+     * @param team team which the stat belongs to
+     * @param time time that the team took to complete
+     */
 		public addTeamRecord: Team * RealNumber ==> () 
 			addTeamRecord(team, time) == (
 				teamsStats := teamsStats munion {team |-> new Stat(time, totalDistance)};
@@ -73,7 +164,9 @@ class Rally
 		pre time > 0 and team in set participants
 		post team in set dom teamsStats;
 		
-		--Updates rally stats through all days
+		/**
+     * Updates rally stats through all days
+     */
 		public getTeamsRecords: () ==> ()
 			getTeamsRecords() == (
 				for d in days do
@@ -88,6 +181,9 @@ class Rally
 					)
 			);
 			
+			/**
+	     * Calculates the winner based on each teams stats
+	     */
 			public calculateWinner: () ==> ()
 			calculateWinner() == (
 				(

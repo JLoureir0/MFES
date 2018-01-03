@@ -1,5 +1,5 @@
 /**
- * This class represents a Section and all it's relevant attributes
+ * This class represents a Rally Section and all it's relevant attributes
  */
 class Section
 
@@ -58,7 +58,7 @@ class Section
 		public teamsStats: MapTeamsStats := {|->};
 		
 	operations
-				/**
+		/**
      * Section Constructor
      *
      * @param sL start location
@@ -102,7 +102,6 @@ class Section
 	 	/**
      * The distance of the Section is the sum of the distances
      * of its sectors
-     *
      */	 	
 	 	public sumDistances: () ==> ()
 	 		sumDistances() == (

@@ -1,5 +1,5 @@
 /**
- * This class represents a Sector and all it's relevant attributes
+ * This class represents a Rally Sector and all it's relevant attributes
  */
 class Sector
 		
