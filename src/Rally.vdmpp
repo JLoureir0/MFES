@@ -39,7 +39,7 @@ class Rally
 				sumDaysDistances();
 				return self;
 			)
-		pre len d > 0 and card p > 1 and ed.day > sd.day
+		pre len d > 0 and card p > 1 and Type`isDateLatter(ed, sd)
 		post self.category = c and self.local = l and self.days = d and self.participants = p and self.startDate = sd and self.endDate = ed ;
 		
 		public assignWinner: Team ==> ()
