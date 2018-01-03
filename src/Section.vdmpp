@@ -99,6 +99,11 @@ class Section
 	 	pre s in set sectors
 	 	post s not in set sectors;
 	 	
+	 	/**
+     * The distance of the Section is the sum of the distances
+     * of its sectors
+     *
+     */	 	
 	 	public sumDistances: () ==> ()
 	 		sumDistances() == (
 	 			for all s in set sectors do
@@ -157,11 +162,21 @@ class Section
 						)
 			);
 	 	
-	functions 	
+	functions
+		/**
+     * Sums and returns all sectors distances
+     */
 	 	private sumSectorsDistances: SectionSectors -> RealNumber 
 		 	sumSectorsDistances(sectors) == (
 		 		if sectors = {} then 0 else
 		 			let s in set sectors in s.distance + sumSectorsDistances(sectors \ {s})
 		 	)
+		measure sectorsSize;
+		
+		/**
+     * Measure function for the recursive sumSectorsDistances function
+     */
+		private sectorsSize: SectionSectors -> nat
+			sectorsSize(sectors) == card sectors;
 	 			
 end Section

@@ -20,7 +20,7 @@ class Rally
 		public days: RallyDays;
 		public participants: RallyParticipants;
 		public totalDistance : RealNumber := INIT_AT_ZERO;
-		public winner: RallyWinner;
+		public winner: [RallyWinner] := nil;
 		public teamSections: RallyTeamSections := {|->};
 		public teamsStats: MapTeamsStats := {|->};
 		public startDate: Type`Date;
