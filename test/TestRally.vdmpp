@@ -25,9 +25,9 @@ class TestRally is subclass of TestSuite
 					
 					dcl participants: set of Team := {t1, t2};
 					
-					dcl dayDate : Day`Date := mk_Day`Date(2017, 10, 23);
-					dcl startDate : Rally`Date := mk_Rally`Date(2017, 10, 23);
-					dcl endDate : Rally`Date := mk_Rally`Date(2017, 10, 24);
+					dcl dayDate : Type`Date := mk_Type`Date(2017, 10, 23);
+					dcl startDate : Type`Date := mk_Type`Date(2017, 10, 23);
+					dcl endDate : Type`Date := mk_Type`Date(2017, 10, 24);
 					
 					dcl d1: Day := new Day(sections, participants, dayDate);
 					
@@ -71,10 +71,10 @@ class TestRally is subclass of TestSuite
 					
 					dcl participants: set of Team := {t1, t2};
 					
-					dcl day1Date : Day`Date := mk_Day`Date(2017, 10, 23);
-					dcl day2Date : Day`Date := mk_Day`Date(2017, 10, 24);
-					dcl startDate : Rally`Date := mk_Rally`Date(2017, 10, 23);
-					dcl endDate : Rally`Date := mk_Rally`Date(2017, 10, 24);
+					dcl day1Date : Type`Date := mk_Type`Date(2017, 10, 23);
+					dcl day2Date : Type`Date := mk_Type`Date(2017, 10, 24);
+					dcl startDate : Type`Date := mk_Type`Date(2017, 10, 23);
+					dcl endDate : Type`Date := mk_Type`Date(2017, 10, 24);
 					
 					dcl d1: Day := new Day(sections1, participants, day1Date);
 					dcl d2: Day := new Day(sections2, participants, day2Date);
@@ -116,9 +116,9 @@ class TestRally is subclass of TestSuite
 	  			
 	  			dcl participants: set of Team := {t1, t2};
 	  			
-	  			dcl dayDate : Day`Date := mk_Day`Date(2017, 10, 23);
-					dcl startDate : Rally`Date := mk_Rally`Date(2017, 10, 23);
-					dcl endDate : Rally`Date := mk_Rally`Date(2017, 10, 24);
+	  			dcl dayDate : Type`Date := mk_Type`Date(2017, 10, 23);
+					dcl startDate : Type`Date := mk_Type`Date(2017, 10, 23);
+					dcl endDate : Type`Date := mk_Type`Date(2017, 10, 24);
 	  			
 					dcl d1: Day := new Day(seqSections, participants, dayDate);
 				
@@ -167,9 +167,9 @@ class TestRally is subclass of TestSuite
 	  			
 	  			dcl participants: set of Team := {t1, t2};
 	  			
-					dcl dayDate : Day`Date := mk_Day`Date(2017, 10, 23);
-					dcl startDate : Rally`Date := mk_Rally`Date(2017, 10, 23);
-					dcl endDate : Rally`Date := mk_Rally`Date(2017, 10, 24);
+					dcl dayDate : Type`Date := mk_Type`Date(2017, 10, 23);
+					dcl startDate : Type`Date := mk_Type`Date(2017, 10, 23);
+					dcl endDate : Type`Date := mk_Type`Date(2017, 10, 24);
 	  			
 					dcl d1: Day := new Day(seqSections, participants, dayDate);
 				
@@ -262,9 +262,9 @@ class TestRally is subclass of TestSuite
 					dcl participants: set of Team := {t1, t2, t3, t4};
 					
 				--Days
-					dcl day1Date : Day`Date := mk_Day`Date(2017, 10, 23);
-					dcl day2Date : Day`Date := mk_Day`Date(2017, 10, 24);
-					dcl day3Date : Day`Date := mk_Day`Date(2017, 10, 25);
+					dcl day1Date : Type`Date := mk_Type`Date(2017, 10, 23);
+					dcl day2Date : Type`Date := mk_Type`Date(2017, 10, 24);
+					dcl day3Date : Type`Date := mk_Type`Date(2017, 10, 25);
 					
 					dcl day1: Day := new Day(day1Sections, participants, day1Date);
 		  		dcl day2: Day := new Day(day2Sections, participants, day2Date);
@@ -273,8 +273,8 @@ class TestRally is subclass of TestSuite
 					dcl days: seq of Day := [day1, day2, day3];
 					
 				--Rally
-					dcl startDate : Rally`Date := mk_Rally`Date(2017, 10, 23);
-					dcl endDate : Rally`Date := mk_Rally`Date(2017, 10, 25);
+					dcl startDate : Type`Date := mk_Type`Date(2017, 10, 23);
+					dcl endDate : Type`Date := mk_Type`Date(2017, 10, 25);
 					dcl rally: Rally := new Rally(<TimeTrial>, "Portugal", days, participants, startDate, endDate);
 					
 				--Add sponsors to Teams

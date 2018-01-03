@@ -23,6 +23,8 @@ class Stat
 			* average speed in a certain sector/section/day
 			*/
 		public averageSpeed: RealNumber;
+		
+		inv averageSpeed > 0;
 	
 	operations
 		/**
@@ -35,9 +37,11 @@ class Stat
 	   */
 		public Stat: RealNumber * RealNumber ==> Stat
 			Stat(t, d) == (
-				time := t;
-				distance := d;
-				averageSpeed := distance/time;
+				atomic(
+					time := t;
+					distance := d;
+					averageSpeed := d/t;
+				);
 				return self;
 			)
 		pre t > 0 and d > 0

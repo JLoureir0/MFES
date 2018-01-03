@@ -8,19 +8,16 @@ class Day
 		public DayParticipants = set1 of Team;
 		public RealNumber = real;
 		public MapTeamsStats = map Team to Stat;
-		public Date ::	year : nat1
-										month: nat1
-										day: nat1;
 
 	instance variables
 		public sections: DaySections;
 		public teams: DayParticipants;
 		public teamsStats: MapTeamsStats := {|->};
 		public totalDistance : RealNumber := INIT_AT_ZERO;
-		public date : Date;
+		public date : Type`Date;
 
 	operations
-		public Day: DaySections * DayParticipants * Date ==> Day
+		public Day: DaySections * DayParticipants * Type`Date ==> Day
 			Day(s, t, d) == (
 				sections := s;
 				teams := t;

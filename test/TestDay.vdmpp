@@ -24,7 +24,7 @@ class TestDay is subclass of TestSuite
 					
 					dcl teams: set of Team := {t1, t2};
 					
-					dcl date : Day`Date := mk_Day`Date(2017, 10, 23);
+					dcl date : Type`Date := mk_Type`Date(2017, 10, 23);
 					
 					dcl d: Day := new Day(sections, teams, date);
 					
@@ -58,7 +58,7 @@ class TestDay is subclass of TestSuite
 					
 					dcl teams: set of Team := {t1, t2};
 					
-					dcl date : Day`Date := mk_Day`Date(2017, 10, 23);
+					dcl date : Type`Date := mk_Type`Date(2017, 10, 23);
 					
 					dcl d: Day := new Day(sections, teams, date);
 		  		
@@ -96,7 +96,7 @@ class TestDay is subclass of TestSuite
 					
 					dcl teams: set of Team := {t1, t3};
 					
-					dcl date : Day`Date := mk_Day`Date(2017, 10, 23);
+					dcl date : Type`Date := mk_Type`Date(2017, 10, 23);
 					
 					dcl d: Day := new Day(sections, teams, date);
 					

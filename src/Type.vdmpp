@@ -5,5 +5,8 @@ class Type
 		public PilotType = <Pilot> | <CoPilot>;
 		public PointOfInterestType = <TimeControl> | <PassageControl> | <Grouping> | <Service> | <Refuel> | <Holding> | <Locality> | <Special> | <TimeTrial>;
 		public RallyType = <TimeTrial> | <SpecialStage> | <Regulatory> | <TSD> | <Historic> | <Vintage>;
+		public Date ::	year : nat1
+										month: nat1
+										day: nat1;
 
 end Type
